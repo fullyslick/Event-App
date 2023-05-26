@@ -1,5 +1,8 @@
+import DUMMY_DATA from "../dummy-data"; // TODO remove
+import EventsList from "../components/EventList";
+
 const Home = () => {
-    return <div>Home Events</div>
+    return <EventsList events={DUMMY_DATA} />
 };
 
 export default Home;
