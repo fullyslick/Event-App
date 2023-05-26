@@ -1,4 +1,7 @@
-.content {
+.main {
     margin: 2rem auto;
     text-align: center;
+    height: 100vh;
+    max-width: 960px;
+    padding: 20px;
 }
