@@ -1,4 +1,5 @@
 import classes from './ContentWrapper.module.css';
+import PropTypes from 'prop-types';
 
 const ContentWrapper = ({ title, children }) => {
   return (
@@ -10,3 +11,11 @@ const ContentWrapper = ({ title, children }) => {
 }
 
 export default ContentWrapper;
+
+ContentWrapper.defaultProps = {
+  title: ''
+};
+
+ContentWrapper.propTypes = {
+  title: PropTypes.string
+};

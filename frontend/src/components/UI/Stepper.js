@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import classes from './Stepper.module.css';
-
 
 const Stepper = ({ id, ticketsInWishlist }) => {
 
@@ -23,3 +23,8 @@ const Stepper = ({ id, ticketsInWishlist }) => {
 }
 
 export default Stepper;
+
+Notification.propTypes = {
+    id: PropTypes.string.isRequired,
+    ticketsInWishlist: PropTypes.isRequired
+};
