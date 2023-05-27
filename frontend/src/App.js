@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getEventsData } from './store/event-actions';
 import Home from './pages/Home';
 import Error from './pages/Error';
 import './App.css';
@@ -20,6 +23,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(getEventsData());
+  }, [dispatch]);
+
   return <RouterProvider router={router} />;
 }
 
