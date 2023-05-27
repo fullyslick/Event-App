@@ -1,5 +1,5 @@
 import ContentWrapper from "../components/Layout/ContentWrapper";
-import MainNavigation from "../components/MainNavigation";
+import MainNavigation from "../components/Layout/MainNavigation";
 
 const EventDetail = () => {
     return (

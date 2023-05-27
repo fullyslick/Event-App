@@ -1,4 +1,4 @@
-import MainNavigation from "../components/MainNavigation";
+import MainNavigation from "../components/Layout/MainNavigation";
 import ContentWrapper from "../components/Layout/ContentWrapper";
 
 const CreateEvent = () => {
