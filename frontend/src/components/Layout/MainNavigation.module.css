@@ -6,6 +6,7 @@
   background-color: var(--color-theme-blue-dark);
   color: var(--color-theme-blue-white);
   box-shadow: var(--box-shadow);
+  width: 100%;
 }
 
 .list {

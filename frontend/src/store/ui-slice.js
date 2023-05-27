@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const uiSlice = createSlice({
     name: 'ui',
-    initialState: { 
-        eventIsVisible: false,
+    initialState: {
+        isLoading: false,
         notification: null
-     },
+    },
     reducers: {
-        toggle(state) {        
-            state.eventIsVisible = !state.eventIsVisible;
+        setLoader(state, action) {
+            state.isLoading = action.payload;
         },
         showNotification(state, action) {
             state.notification = {
