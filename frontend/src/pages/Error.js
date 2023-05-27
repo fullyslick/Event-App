@@ -1,6 +1,6 @@
 import { useRouteError } from "react-router-dom"
 import MainNavigation from "../components/MainNavigation";
-import ContentWrapper from "../components/ContentWrapper";
+import Notification from "../components/UI/Notification";
 
 const Error = () => {
     // Detect error type    
@@ -17,10 +17,8 @@ const Error = () => {
 
     return (
         <div>
-            <MainNavigation />
-            <ContentWrapper title={title}>
-                <p>{message}</p>
-            </ContentWrapper>
+            <MainNavigation />            
+            <Notification status={"error"} title={title} message={message} />
         </div>);
 };
 

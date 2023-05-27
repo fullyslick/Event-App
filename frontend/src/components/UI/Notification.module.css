@@ -1,0 +1,19 @@
+.notification {
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;    
+  }
+  
+  .notification h2,
+  .notification p {
+    font-size: var(--font-l);
+  }
+  
+  .error {
+    color: var( --color-theme-red);
+  }
+  
+  .success {
+    color: green;
+  }
