@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import classes from './EventTile.module.css';
+import Stepper from './Stepper';
 
 const EventTile = ({ event }) => {
     const { id, title, image, location, date, ticketsWishList } = event;
@@ -14,11 +15,7 @@ const EventTile = ({ event }) => {
                 <p>{location}</p>
                 <p>{date}</p>
             </div>
-            <div className={classes['event-tile__wishlist-stepper']}>
-                <button className={classes['event-tile__wishlist-stepper-btn--minus']}>-</button>
-                <span className={classes['event-tile__wishlist-stepper-value']}>{ticketsWishList}</span>
-                <button className={classes['event-tile__wishlist-stepper-btn--plus']}>+</button>
-            </div>
+            <Stepper id={id} ticketsInWishlist={ticketsWishList} />        
         </div>
     );
 }

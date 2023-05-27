@@ -1,0 +1,33 @@
+.stepper {
+  display: flex;
+  padding: 0 16px;
+  justify-content: flex-end;
+}
+
+.stepper-value {
+  min-width: 34px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: var(--font-m);
+  border-top: solid 1px var(--color-gray-400);
+  border-bottom: solid 1px var(--color-gray-400);
+}
+
+.stepper-btn--minus {
+  width: 40px;
+  height: 40px;
+  border: solid 1px var(--color-gray-400);
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: var(--font-l);
+}
+
+.stepper-btn--plus {
+  width: 40px;
+  height: 40px;
+  border: solid 1px var(--color-gray-400);
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: var(--font-l);
+}
