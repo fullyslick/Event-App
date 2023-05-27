@@ -3,8 +3,7 @@ import EventTile from './EventTile';
 
 function EventsList({ events }) {
     return (
-        <div className={classes.events}>
-            <h1>Events</h1>
+        <div className={classes.events}>            
             <ul className={classes.list}>
                 {events.map((event) => (
                     <li key={event.id} className={classes.item}>

@@ -1,5 +1,12 @@
+import MainNavigation from "../components/MainNavigation";
+import ContentWrapper from "../components/Layout/ContentWrapper";
+
 const CreateEvent = () => {
-    return <div>Create Event</div>
+    return (
+        <ContentWrapper title="Create Event">
+            Event Form
+        </ContentWrapper>
+    )
 }
 
 export default CreateEvent;

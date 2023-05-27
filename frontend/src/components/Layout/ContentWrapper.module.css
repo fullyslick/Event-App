@@ -1,0 +1,9 @@
+.content {
+
+}
+
+.content-title {
+    text-align: center;
+    margin: 2rem;
+    font-size: var(--font-xxl);
+}
