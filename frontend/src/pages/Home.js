@@ -1,4 +1,4 @@
-import EventsList from "../components/EventList";
+import EventsList from "../components/Events/EventList";
 import { useSelector } from 'react-redux';
 import Notification from "../components/UI/Notification";
 import ContentWrapper from "../components/Layout/ContentWrapper";
