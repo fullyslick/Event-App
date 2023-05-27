@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import classes from './EventTile.module.css';
-import Stepper from './Stepper';
+import Stepper from './UI/Stepper';
 
 const EventTile = ({ event }) => {
     const { id, title, image, location, date, ticketsWishList, price } = event;
