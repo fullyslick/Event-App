@@ -37,7 +37,7 @@ EventTile.propTypes = {
         image: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         location: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
+        categoryId: PropTypes.string.isRequired,
         ticketsWishList: PropTypes.number.isRequired,
         availableTickets: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired

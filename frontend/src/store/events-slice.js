@@ -31,8 +31,8 @@ const eventsSlice = createSlice({
              // Update Total Price
              // Increment total price with the price of event ticket
         }   ,
-        replaceEvents(state, action) {             
-            state.events = action.payload.events;
+        replaceEvents(state, action) {               
+            state.events = action.payload;
             state.totalWishList = action.payload.totalWishList;
         }
           
