@@ -6,6 +6,7 @@ import RootLayout from './pages/Root';
 import WishList from './pages/WishList';
 import CreateEvent from './pages/CreateEvent';
 import { useEffect } from 'react';
+import localStorageHelper from './utils/local-storage';
 
 const router = createBrowserRouter([
   {
@@ -24,9 +25,7 @@ function App() {
   // On App mount read localStorage
   // If user wishlist do not exists, create it
   useEffect(() => {
-    if (!localStorage.getItem('eventsWishlist')) {
-      localStorage.setItem('eventsWishlist', JSON.stringify({}));
-    }
+    localStorageHelper.initStorage();
   }, []);
 
   return <RouterProvider router={router} />;
