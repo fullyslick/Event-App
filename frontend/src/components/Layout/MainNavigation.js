@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux";
 
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
+    const wishlistCount = useSelector(state => state.events.totalWishList);
     return (
         <header className={classes.header}>
             <nav>
@@ -29,7 +31,7 @@ const MainNavigation = () => {
                             to='/wishlist'
                             className={({ isActive }) => isActive ? classes.active : undefined}
                         >
-                            Wish List
+                            Wish List ({wishlistCount})
                         </NavLink>
                     </li>                    
                 </ul>

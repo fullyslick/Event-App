@@ -25,3 +25,14 @@
   color: var(--color-primary-800);
   text-decoration: underline;
 }
+
+@media screen and (max-width: 600px) {
+  .list {
+    display: flex;
+    gap: 16px;
+  }
+
+  .list a {
+    font-size: var(--font-m);
+  }
+}

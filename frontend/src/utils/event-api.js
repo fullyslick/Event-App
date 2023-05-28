@@ -27,8 +27,7 @@ async  function transformData(data){
                     currency: event.ticket_availability.maximum_ticket_price.currency,
                     ticketsWishList: 0
                 }
-    
-                console.log(event.ticket_availability.major_value);
+                
                 return eventObj;
             });
         }        
