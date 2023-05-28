@@ -14,11 +14,11 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // Get events dat from API only if there is no data in Redux
+        // Get events data from API only if there is no data in Redux
         if(!events.length) {
             dispatch(getEventsData());
         }        
-    }, [dispatch]);
+    }, [dispatch, events.length]);
    
     return (
         <ContentWrapper title="Events">
