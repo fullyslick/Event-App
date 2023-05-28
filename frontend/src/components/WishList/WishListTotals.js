@@ -3,7 +3,7 @@ import classes from './WishListTotals.module.css';
 
 const WishListTotals = () => {
     const totalWishList = useSelector(state => state.events.totalWishList);
-    const totalPrice = useSelector(state => state.events.totalPrice / 100);
+    const totalPrice = useSelector(state => state.events.totalPrice / 100 + ' USD');
 
     return (
         <div className={classes['wishlist-totals']}>
