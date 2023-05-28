@@ -1,20 +1,22 @@
+const storageKey = 'eventsWishlist';
+
 const helperModule = () => {
     function initStorage() {    
         if (!hasLocalStorageData()) {
-            localStorage.setItem('eventsWishlist', JSON.stringify({}));
+            localStorage.setItem(storageKey, JSON.stringify({}));
           }
     }
 
     function getLocalStorageData() {
         if (hasLocalStorageData()) {
-            return JSON.parse(localStorage.getItem('eventsWishlist'))
+            return JSON.parse(localStorage.getItem(storageKey))
         }
 
         return {};
     }
 
     function hasLocalStorageData() {
-        return !!localStorage.getItem('eventsWishlist');
+        return !!localStorage.getItem(storageKey);
     }
 
     function rebuiltStorage(events) {
@@ -26,15 +28,15 @@ const helperModule = () => {
             }
         });
 
-        localStorage.setItem('eventsWishlist', JSON.stringify(eventStorageObj));
+        localStorage.setItem(storageKey, JSON.stringify(eventStorageObj));
     }
 
     function updateStorage(data) {
-        localStorage.setItem('eventsWishlist', JSON.stringify(data));
+        localStorage.setItem(storageKey, JSON.stringify(data));
     }
 
     function resetWishListItem(eventId) {
-        const localStorageWishlist = JSON.parse(localStorage.getItem('eventsWishlist'));
+        const localStorageWishlist = JSON.parse(localStorage.getItem(storageKey));
 
         localStorageWishlist[eventId] = 0;
 
