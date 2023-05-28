@@ -1,10 +1,7 @@
-const organizationId = '1574685524443'
-const token = 'D27USCKRO7EGLYO5DPKO';
-const eventId = '643618649707'; // TODO remove - dynamic value
+import configData from './config.json';
 
-
-const getAllEvents = `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/?expand=ticket_availability,venue,category`;
-const getEventDetails = `https://www.eventbriteapi.com/v3/events/${eventId}/?expand=ticket_availability,venue,category`;
+const getAllEvents = `https://www.eventbriteapi.com/v3/organizations/${configData.ORGANIZATION_ID}/events/?expand=ticket_availability,venue,category`;
+const getEventDetails = `https://www.eventbriteapi.com/v3/events/${configData.PLACEHOLDER_EVENT_ID}/?expand=ticket_availability,venue,category`;
 
 
 async  function transformData(data){
@@ -45,7 +42,7 @@ export async function getEvents() {
         const response = await fetch(getAllEvents, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${configData.API_TOKEN}`
             }
         });
         const data = await response.json();
