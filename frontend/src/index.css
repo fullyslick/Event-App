@@ -20,10 +20,6 @@
   --color-theme-red: #ee6c4d;
   --color-theme-dark: #293241;
 
-  /* Breakpoints */
-  --mobile-breakpoint: 375px;
-	--tablet-breakpoint: 768px;
-
   /* Box Shadow */
   --box-shadow:  0 0 5px 0 rgba(0, 0, 0, 0.75);
   --box-shadow-light: 0 0 10px -4px rgba(0,0,0,0.65);
@@ -32,9 +28,9 @@
   /* Font sizes */
   --font-xxl: 24px;
   --font-xl: 20px;
-  --font-l: 18px;
-  --font-m: 16px;
-  --font-s: 14px;
+  --font-l: 16px;
+  --font-m: 14px;
+  --font-s: 12px;
 
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;

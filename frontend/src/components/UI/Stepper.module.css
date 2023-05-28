@@ -1,6 +1,6 @@
 .stepper {
   display: flex;
-  padding: 0 16px;
+  margin: 4px 16px;
   justify-content: flex-end;
 }
 
