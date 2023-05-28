@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"; // Uses Immer behind the scenes so it is safe to mutate state directly
 
 const initialEventState = {
     events: [],
@@ -11,15 +11,39 @@ const eventsSlice = createSlice({
     initialState: initialEventState,
     reducers: {
         addToWishLst(state, action) {
-            const id = action.payload;
-            // TODO:
-            // Is availableTickets for this event are 0 return early        
-            // Should find event by id
-            // Increment its wishlist + 1
-            // Update available tickets for this event
-            // Update totalWishList
-            // Update Total Price
-            // Increment total price with the price of event ticket   
+            const updatedEventId = action.payload;
+            const events = state.events;
+
+            const updatedEventIndex = events.findIndex(event => event.id === updatedEventId);
+
+            if (updatedEventId >= 0) {
+                // If availableTickets for this event are 0 return early
+                if (!events[updatedEventIndex].availableTickets) {
+                    return;
+                }
+
+                // Update Redux state (ok with Immer)
+                events[updatedEventIndex].availableTickets -= 1;
+
+                events[updatedEventIndex].ticketsWishList += 1;
+
+                state.totalWishList += 1;
+
+                state.totalPrice += events[updatedEventIndex].price;
+
+                // Update local storage
+                const localWishlist = JSON.parse(localStorage.getItem('eventsWishlist'));
+
+                if (localWishlist.hasOwnProperty(updatedEventId)) {
+                    localWishlist[updatedEventId] += 1;
+                } else {
+                    localWishlist[updatedEventId] = 1;
+                }            
+
+                console.log(localWishlist)
+
+                localStorage.setItem('eventsWishlist', JSON.stringify(localWishlist));
+            }
         },
         removeFromWishList(state, action) {
             const id = action.payload;
@@ -43,8 +67,8 @@ const eventsSlice = createSlice({
                 const localWishlist = JSON.parse(localStorage.getItem('eventsWishlist'));
 
 
-                eventsData.forEach(event => {
-                    if (localWishlist.hasOwnProperty(event.id) && event.availableTickets > 0) {                        
+                eventsData.forEach(event => {                  
+                    if (localWishlist.hasOwnProperty(event.id) && event.availableTickets > 0) {
                         if (localWishlist[event.id] <= event.availableTickets) {
                             event.ticketsWishList = localWishlist[event.id];
                             onLoadTotalWishList += localWishlist[event.id];
@@ -57,7 +81,7 @@ const eventsSlice = createSlice({
                 });
             }
 
-
+            // Uses Immer behind the scenes so it is safe to mutate state directly
             state.events = action.payload;
             state.totalWishList = onLoadTotalWishList;
             state.totalPrice = onLoadTotalPrice;
