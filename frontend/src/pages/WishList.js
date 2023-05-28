@@ -10,18 +10,19 @@ import PdfDownloader from '../components/PdfDownloader/PdfDownloader';
 import classes from './WishList.module.css';
 
 const WishList = () => {
-    const events = useSelector(state => state.events.events.filter(event => event.ticketsWishList));
+    const events = useSelector(state => state.events.events);
+    const wishListEvents = events.filter(event => event.ticketsWishList);
     const notification = useSelector(state => state.ui.notification);
     const isLoading = useSelector(state => state.ui.isLoading);
 
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         // Get events data from API only if there is no data in Redux
         if (!events.length) {
             dispatch(getEventsData());
         }
-    }, [dispatch]);
+    }, [dispatch, events.length]);
 
     return (
         <ContentWrapper title="Wish List">
@@ -31,9 +32,9 @@ const WishList = () => {
                 <>                    
                     <div className={classes['wishlist-summary']}>
                         <WishListTotals />
-                        <PdfDownloader events={events} />
+                        <PdfDownloader events={wishListEvents} />
                     </div>
-                    <EventsList events={events} />
+                    <EventsList events={wishListEvents} />
                 </>
             }
             {notification && !isLoading && <Notification status={notification.status} title={notification.title} message={notification.message} />}
