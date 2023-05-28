@@ -1,8 +1,20 @@
 const helperModule = () => {
-    function initStorage() {
-        if (!localStorage.getItem('eventsWishlist')) {
+    function initStorage() {    
+        if (!hasLocalStorageData()) {
             localStorage.setItem('eventsWishlist', JSON.stringify({}));
           }
+    }
+
+    function getLocalStorageData() {
+        if (hasLocalStorageData()) {
+            return JSON.parse(localStorage.getItem('eventsWishlist'))
+        }
+
+        return {};
+    }
+
+    function hasLocalStorageData() {
+        return !!localStorage.getItem('eventsWishlist');
     }
 
     function rebuiltStorage(events) {
@@ -33,7 +45,9 @@ const helperModule = () => {
         initStorage: initStorage,
         rebuiltStorage: rebuiltStorage,
         updateStorage: updateStorage,
-        resetWishListItem: resetWishListItem
+        resetWishListItem: resetWishListItem,
+        hasLocalStorageData: hasLocalStorageData,
+        getLocalStorageData: getLocalStorageData
     }
 };
 
