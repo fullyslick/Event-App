@@ -1,11 +1,10 @@
 const organizationId = '1574685524443'
 const token = 'D27USCKRO7EGLYO5DPKO';
-const eventId = '643618649707'; // dynamic value
-const account = `https://www.eventbriteapi.com/v3/users/me/?token=${token}`;
-const getAllEvents = `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/`;
-const getOrganizationId = `https://www.eventbriteapi.com/v3/users/me/organizations/`;
-const getCategoryMappings = `https://www.eventbriteapi.com/v3/categories/`;
-const getEventDetails = `https://www.eventbriteapi.com/v3/events/${eventId}/`;
+const eventId = '643618649707'; // TODO remove - dynamic value
+
+
+const getAllEvents = `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/?expand=ticket_availability,venue,category`;
+const getEventDetails = `https://www.eventbriteapi.com/v3/events/${eventId}/?expand=ticket_availability,venue,category`;
 
 
 async  function transformData(data){
@@ -14,25 +13,26 @@ async  function transformData(data){
 
     try {
         if (events?.length) {
-            eventsData = events.map((event) => {
+            eventsData = events.map((event) => {                
                 const eventObj = {
                     id: event.id,
                     title: event.name.text,
-                    description: event.summary,
-                    date: event.start.local,
-                    location: '', // TODO remove 
+                    description: event.description.text,
+                    date: event.start.local,                    
+                    location: event.venue?.name ? event.venue.name : 'Online',
+                    address: event.venue?.address ? event.venue.address : '',
                     imageOriginal: event.logo.original.url,
                     image: event.logo.url,
-                    categoryId: event['category_id'],
+                    category: event.category.name,
                     availableTickets: event.capacity,
-                    price: 0, // TODO find how to add,
+                    price: parseFloat(event.ticket_availability.maximum_ticket_price.major_value),
+                    currency: event.ticket_availability.maximum_ticket_price.currency,
                     ticketsWishList: 0
                 }
     
                 return eventObj;
             });
-        }
-        
+        }        
         return Promise.resolve(eventsData);
     } catch (error) {        
         return Promise.reject(new Error('Something went wrong while preparing your data!'));
