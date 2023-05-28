@@ -1,0 +1,9 @@
+.wishlist-summary {
+  margin: 16px;
+  background-color: white;
+  border-radius: 10px;
+  border: solid 4px var(--color-theme-blue-dark);
+  box-shadow: var(--box-shadow-light);
+  display: flex;
+  justify-content: space-between;
+}

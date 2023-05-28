@@ -1,11 +1,6 @@
 .wishlist-totals {
-  background-color: white;
-  border-radius: 10px;
-  border: solid 2px var(--color-gray-200);
   margin: 8px;
-  padding: 16px;
-  box-shadow: var(--box-shadow-light);
-  width: calc(33.3% - 24px);
+  padding: 8px;
   text-align: left;
 }
 
@@ -15,7 +10,6 @@
 
 .wishlist-totals--title {
   font-weight: bold;
-  color: var( --color-theme-blue-dark);
+  color: var(--color-theme-blue-dark);
   margin-right: 4px;
 }
-

@@ -17,7 +17,7 @@ async  function transformData(data){
                     description: event.description.text,
                     date: event.start.local,                    
                     location: event.venue?.name ? event.venue.name : 'Online',
-                    address: event.venue?.address ? event.venue.address : '',
+                    address: event.venue?.address?.localized_address_display ? event.venue.address.localized_address_display : '',
                     imageOriginal: event.logo.original.url,
                     image: event.logo.url,
                     category: event.category.name,

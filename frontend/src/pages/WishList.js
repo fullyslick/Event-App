@@ -1,11 +1,13 @@
-import ContentWrapper from "../components/Layout/ContentWrapper";
-import EventsList from "../components/Events/EventList";
+import ContentWrapper from '../components/Layout/ContentWrapper';
+import EventsList from '../components/Events/EventList';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getEventsData } from '../store/event-actions';
-import Notification from "../components/UI/Notification";
-import Loader from "../components/UI/Loader";
-import WishListTotals from "../components/WishList/WishListTotals";
+import Notification from '../components/UI/Notification';
+import Loader from '../components/UI/Loader';
+import WishListTotals from '../components/WishList/WishListTotals';
+import PdfDownloader from '../components/PdfDownloader/PdfDownloader';
+import classes from './WishList.module.css';
 
 const WishList = () => {
     const events = useSelector(state => state.events.events.filter(event => event.ticketsWishList));
@@ -19,18 +21,18 @@ const WishList = () => {
         if (!events.length) {
             dispatch(getEventsData());
         }
-    }, [dispatch, events.length]);
-
-    const downloadHandler = () => {
-        console.log('Download clicked');
-    };
+    }, [dispatch]);
 
     return (
         <ContentWrapper title="Wish List">
-            {isLoading ? <Loader /> :
-                <>
-                    <div>TO DO SEARCH HERE</div>
-                    <WishListTotals />
+            {isLoading ?
+                <Loader />
+                :
+                <>                    
+                    <div className={classes['wishlist-summary']}>
+                        <WishListTotals />
+                        <PdfDownloader events={events} />
+                    </div>
                     <EventsList events={events} />
                 </>
             }

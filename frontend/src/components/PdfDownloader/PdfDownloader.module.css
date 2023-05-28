@@ -1,0 +1,21 @@
+.pdf-link {
+  display: block;
+  margin: 16px;
+  text-decoration: none;
+  background-color: var(--color-theme-red);
+  color: white;
+  padding: 16px;
+  border: solid 4px var(--color-theme-red);
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: var(--font-l);
+  transition: all 0.3s;
+  box-shadow: var(--box-shadow);
+}
+
+.pdf-link:hover {
+  color: var(--color-theme-red);
+  border: solid 4px var(--color-theme-red);
+  background-color: white;
+  transition: all 0.3s;
+}
