@@ -12,13 +12,12 @@ const Stepper = ({ id, ticketsInWishlist }) => {
     };
 
     const handleDecrement = () => {
-        // TODO dispatch decrement in wishlist using the id
-        // Should not go below 0
+        dispatch(eventsActions.removeFromWishList(id));
     };
 
     return (
         <div className={classes['stepper']}>
-            <button className={classes['stepper-btn--minus']}>-</button>
+            <button className={classes['stepper-btn--minus']} onClick={handleDecrement}>-</button>
             <span className={classes['stepper-value']}>{ticketsInWishlist}</span>
             <button className={classes['stepper-btn--plus']} onClick={handleIncrement}>+</button>
         </div>

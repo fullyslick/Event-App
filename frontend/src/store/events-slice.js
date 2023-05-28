@@ -17,51 +17,86 @@ const eventsSlice = createSlice({
 
             const updatedEventIndex = events.findIndex(event => event.id === updatedEventId);
 
-            if (updatedEventId >= 0) {
-                // If availableTickets for this event are 0 return early
-                if (!events[updatedEventIndex].availableTickets) {
-                    return;
-                }
-
-                // Update Redux state (ok with Immer)
-                events[updatedEventIndex].availableTickets -= 1;
-
-                events[updatedEventIndex].ticketsWishList += 1;
-
-                state.totalWishList += 1;
-
-                state.totalPrice += events[updatedEventIndex].price;
-
-                // Update local storage
-
-                // If localStorage data was deleted by user just re-build it
-                if (!localStorage.getItem('eventsWishlist')) {
-                    localStorageHelper.rebuiltStorage(events);              
-                    return;
-                }
-
-                // localStorage data exist so update it   
-                const localWishlist = JSON.parse(localStorage.getItem('eventsWishlist'));
-
-                if (localWishlist.hasOwnProperty(updatedEventId)) {
-                    localWishlist[updatedEventId] += 1;
-                } else {
-                    localWishlist[updatedEventId] = 1;
-                }                
-
-                localStorageHelper.updateStorage(localWishlist);                
+            // No such event found in state
+            if (updatedEventId < 0) {
+                return;
             }
+
+            // If availableTickets for this event are 0 return early
+            if (!events[updatedEventIndex].availableTickets) {
+                return;
+            }
+
+            // Update Redux state (ok with Immer)
+            events[updatedEventIndex].availableTickets -= 1;
+
+            events[updatedEventIndex].ticketsWishList += 1;
+
+            state.totalWishList += 1;
+
+            state.totalPrice += events[updatedEventIndex].price;
+
+            // Update local storage
+
+            // If localStorage data was deleted by user just re-build it
+            if (!localStorageHelper.hasLocalStorageData()) {
+                localStorageHelper.rebuiltStorage(events);
+                return;
+            }
+
+            // localStorage data exist so update it   
+            const localWishlist = localStorageHelper.getLocalStorageData();
+
+            if (localWishlist.hasOwnProperty(updatedEventId)) {
+                localWishlist[updatedEventId] += 1;
+            } else {
+                localWishlist[updatedEventId] = 1;
+            }
+
+            localStorageHelper.updateStorage(localWishlist);
         },
         removeFromWishList(state, action) {
-            const id = action.payload;
-            // TODO:'
+            const updatedEventId = action.payload;
+            const events = state.events;
+
+            const updatedEventIndex = events.findIndex(event => event.id === updatedEventId);
+
+            // No such event found in state
+            if (updatedEventId < 0) {
+                return;
+            }
+
             // If the event's wishlist is 0 return early
-            // Should find event by id
-            // Increment its wishlist -
-            // Update available tickets for this event
-            // Update totalWishList 1
-            // Update Total Price
-            // Increment total price with the price of event ticket
+            if (!events[updatedEventIndex].ticketsWishList) {
+                console.log('return earlty');
+                return;
+            }
+
+            // Update Redux state (ok with Immer)
+            events[updatedEventIndex].availableTickets += 1;
+
+            events[updatedEventIndex].ticketsWishList -= 1;
+
+            state.totalWishList -= 1;
+
+            state.totalPrice -= events[updatedEventIndex].price;
+
+            // Update local storage
+
+            // If localStorage data was deleted by user just re-build it
+            if (!localStorageHelper.hasLocalStorageData()) {
+                localStorageHelper.rebuiltStorage(events);
+                return;
+            }
+
+            // localStorage data exist so update it   
+            const localWishlist = localStorageHelper.getLocalStorageData();
+
+            if (localWishlist.hasOwnProperty(updatedEventId)) {
+                localWishlist[updatedEventId] -= 1;
+            }
+
+            localStorageHelper.updateStorage(localWishlist);
         },
         replaceEvents(state, action) {
             let onLoadTotalWishList = 0;
@@ -71,16 +106,16 @@ const eventsSlice = createSlice({
             if (localStorage.getItem('eventsWishlist')) {
                 // Get data from localStorage wishlist
                 // Loop over all API data and replace ticketsWishList of event with data from localStorage
-                const localWishlist = JSON.parse(localStorage.getItem('eventsWishlist'));
+                const localWishlist = localStorageHelper.getLocalStorageData();
 
 
                 eventsData.forEach(event => {
                     if (localWishlist.hasOwnProperty(event.id)) {
 
                         // If there are no available tickets, reset local Storage wish list for this item
-                        if (!event.availableTickets) {
+                        if (!event.availableTickets || localWishlist[event.id] < 0) {
                             localWishlist[event.id] = 0;
-                            localStorageHelper.updateStorage(localWishlist);                            
+                            localStorageHelper.updateStorage(localWishlist);
                         }
 
                         // If the localWishlist has more items, then available,
