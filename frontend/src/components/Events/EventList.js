@@ -2,7 +2,7 @@ import classes from './EventsList.module.css';
 import EventTile from './EventTile';
 import PropTypes from 'prop-types';
 
-function EventsList({ events }) {    
+function EventsList({ events }) {
     return (
         <div className={classes.events}>
             <ul className={classes.list}>
@@ -30,10 +30,11 @@ EventsList.propTypes = {
             image: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
             location: PropTypes.string.isRequired,
-            categoryId: PropTypes.string.isRequired,
             ticketsWishList: PropTypes.number.isRequired,
             availableTickets: PropTypes.number.isRequired,
-            price: PropTypes.number.isRequired
+            price: PropTypes.number.isRequired,
+            category: PropTypes.string.isRequired,
+            currency: PropTypes.string.isRequired
         })
     )
 };
