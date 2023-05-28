@@ -5,7 +5,7 @@ import Image from '../UI/Image';
 import PropTypes from 'prop-types';
 
 const EventTile = ({ event }) => {
-    const { id, title, image, location, date, ticketsWishList, price, category, currency, availableTickets } = event;
+    const { id, title, image, location, date, ticketsWishList, displayPrice, category, currency, availableTickets } = event;
 
     const eventDate = date.split('T')[0].split('-').join(' ');
     let eventTime = date.split('T')[1].split(':');
@@ -31,7 +31,7 @@ const EventTile = ({ event }) => {
                     <span className={classes['event-tile__details-label']}>Starts at:</span>{eventTime}
                 </p>
                 <p>
-                    <span className={classes['event-tile__details-label']}>Price:</span>{price} {currency}
+                    <span className={classes['event-tile__details-label']}>Price:</span>{displayPrice} {currency}
                 </p>
             </div>
             <div className={classes['event-tile__details-actions']}>
@@ -70,7 +70,7 @@ EventTile.propTypes = {
         location: PropTypes.string.isRequired,
         ticketsWishList: PropTypes.number.isRequired,
         availableTickets: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
+        displayPrice: PropTypes.string.isRequired,
         category: PropTypes.string.isRequired,
         currency: PropTypes.string.isRequired
     })

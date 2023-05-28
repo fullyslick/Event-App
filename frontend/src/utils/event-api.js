@@ -22,11 +22,13 @@ async  function transformData(data){
                     image: event.logo.url,
                     category: event.category.name,
                     availableTickets: event.capacity,
-                    price: parseFloat(event.ticket_availability.maximum_ticket_price.major_value),
+                    price:event.ticket_availability.maximum_ticket_price.value,
+                    displayPrice: event.ticket_availability.maximum_ticket_price.major_value,
                     currency: event.ticket_availability.maximum_ticket_price.currency,
                     ticketsWishList: 0
                 }
     
+                console.log(event.ticket_availability.major_value);
                 return eventObj;
             });
         }        

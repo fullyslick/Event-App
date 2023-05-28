@@ -32,7 +32,7 @@ EventsList.propTypes = {
             location: PropTypes.string.isRequired,
             ticketsWishList: PropTypes.number.isRequired,
             availableTickets: PropTypes.number.isRequired,
-            price: PropTypes.number.isRequired,
+            displayPrice: PropTypes.string.isRequired,
             category: PropTypes.string.isRequired,
             currency: PropTypes.string.isRequired
         })
