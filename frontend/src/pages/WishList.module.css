@@ -6,4 +6,11 @@
   box-shadow: var(--box-shadow-light);
   display: flex;
   justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .wishlist-summary {
+        margin: 8px;
+    }
 }
