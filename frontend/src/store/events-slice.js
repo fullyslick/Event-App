@@ -68,7 +68,6 @@ const eventsSlice = createSlice({
 
             // If the event's wishlist is 0 return early
             if (!events[updatedEventIndex].ticketsWishList) {
-                console.log('return earlty');
                 return;
             }
 
