@@ -10,6 +10,7 @@ import PdfDownloader from '../components/PdfDownloader/PdfDownloader';
 import classes from './WishList.module.css';
 
 const WishList = () => {
+    const hasEvents = useSelector(state => state.events.areEventsReplaced);
     const events = useSelector(state => state.events.events);
     const wishListEvents = events.filter(event => event.ticketsWishList);
     const notification = useSelector(state => state.ui.notification);
@@ -19,10 +20,10 @@ const WishList = () => {
     
     useEffect(() => {
         // Get events data from API only if there is no data in Redux
-        if (!events.length) {
+        if (!hasEvents) {
             dispatch(getEventsData());
         }
-    }, [dispatch, events.length]);
+    }, [dispatch, hasEvents]);
 
     return (
         <ContentWrapper title="Wish List">

@@ -4,7 +4,8 @@ import localStorageHelper from "../utils/local-storage";
 const initialEventState = {
     events: [],
     totalWishList: 0,
-    totalPrice: 0
+    totalPrice: 0,
+    areEventsReplaced: false
 }
 
 const eventsSlice = createSlice({
@@ -140,6 +141,11 @@ const eventsSlice = createSlice({
             state.events = action.payload;
             state.totalWishList = onLoadTotalWishList;
             state.totalPrice = onLoadTotalPrice;
+            // Flag used by pages to detect if events should be fetched.
+            // Previously "events" existence was used as signal to load all API data
+            // However single event API call, populates events, so this "existence event" will not work properly
+            // Instead this flag is used
+            state.areEventsReplaced = true;
         }
 
     }
