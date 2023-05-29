@@ -5,13 +5,14 @@ import { useParams } from 'react-router-dom';
 import { getSingleEvent } from '../store/event-actions';
 
 import ContentWrapper from "../components/Layout/ContentWrapper";
-import EventTile from '../components/Events/EventTile';
+import Event from '../components/Events/Event';
 import Notification from '../components/UI/Notification';
 import Loader from '../components/UI/Loader';
 
 const EventDetail = () => {
     const params = useParams();
     const event = useSelector(state => state.events.events.filter((event) => event.id === params.eventId))[0];
+    const eventTitle = event?.title ? event.title : '';
     const notification = useSelector(state => state.ui.notification);
     const isLoading = useSelector(state => state.ui.isLoading);
 
@@ -25,17 +26,17 @@ const EventDetail = () => {
     }, [event, params.eventId, dispatch]);
 
     return (
-        <div>
-            <ContentWrapper title="Event Details">
+        <>
+            <ContentWrapper title={eventTitle}>                
                 {isLoading && <Loader />}
-                {event && <EventTile event={event} />}
+                {event && <Event event={event} />}
                 {notification && !isLoading && <Notification
                     status={notification.status}
                     title={notification.title}
                     message={notification.message} />                  
                 }
             </ContentWrapper>
-        </div>
+        </>
     );
 }
 
