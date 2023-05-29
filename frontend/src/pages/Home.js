@@ -39,8 +39,7 @@ const Home = () => {
         if (!hasEvents) {
             dispatch(getEventsData());
             return;
-        }
-        console.log('update');
+        }        
     }, [dispatch, hasEvents]);
 
     const handleSearchChange = (event) => {
