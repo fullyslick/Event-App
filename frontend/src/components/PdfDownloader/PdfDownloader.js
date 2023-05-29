@@ -11,11 +11,15 @@ const PdfDownloader = ({ events }) => {
 
     return (
         <>
-            <PDFDownloadLink
+            <PDFDownloadLink                
                 className={classes['pdf-link']}
                 document={<PdfDocumentWithData />}
                 fileName="events-wishlist.pdf">
-                Download events
+                {({ blob, url, loading, error }) => {               
+                   return ( <span className={`${classes['pdf-link--content']} ${loading ? classes['pdf-link--loading'] : ''}`}>
+                        Download Events
+                    </span>)
+                }}
             </PDFDownloadLink>
         </>
     )
