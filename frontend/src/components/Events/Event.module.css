@@ -9,11 +9,6 @@
   padding-bottom: 16px;
 }
 
-.event:hover {
-  transition: all 0.3s;
-  box-shadow: var(--box-shadow-light-hover);
-}
-
 .event__image--frame {
   display: block;
   height: 400px;
