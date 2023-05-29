@@ -19,20 +19,21 @@ const EventDetail = () => {
 
     // Call API to get data about this event only if the entry do not exist in Redux
     useEffect(() => {
-        if(!event) {            
+        if (!event) {
             dispatch(getSingleEvent(params.eventId));
-        }        
+        }
     }, [event, params.eventId, dispatch]);
 
     return (
         <div>
             <ContentWrapper title="Event Details">
-           {isLoading || !event ? <Loader /> : <EventTile event={event} />}            
-            {notification && !isLoading &&
-                <Notification
+                {isLoading && <Loader />}
+                {event && <EventTile event={event} />}
+                {notification && !isLoading && <Notification
                     status={notification.status}
                     title={notification.title}
-                    message={notification.message} />}                
+                    message={notification.message} />                  
+                }
             </ContentWrapper>
         </div>
     );

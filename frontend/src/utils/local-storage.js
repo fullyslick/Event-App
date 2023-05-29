@@ -1,9 +1,7 @@
 const storageKey = 'userEventData';
 
 const initialCache = {
-    wishlist: {},
-    totalWishlistEvents: 0,
-    totalPrice: 0
+    wishlist: {}
 }
 
 const helperModule = () => {
@@ -16,17 +14,6 @@ const helperModule = () => {
     function getLocalWishlist() {
         if (hasLocalStorageData()) {
             return JSON.parse(localStorage.getItem(storageKey)).wishlist;
-        }
-
-        return {};
-    }
-
-    function getTotalsInfo() {
-        if (hasLocalStorageData()) {
-            return {
-                totalWishlistEvents: JSON.parse(localStorage.getItem(storageKey)).totalWishlistEvents,
-                totalPrice: JSON.parse(localStorage.getItem(storageKey)).totalPrice
-            }
         }
 
         return {};
@@ -82,8 +69,7 @@ const helperModule = () => {
         resetWishListItem: resetWishListItem,
         hasLocalStorageData: hasLocalStorageData,
         getLocalWishlist: getLocalWishlist,
-        updateStorage: updateStorage,
-        getTotalsInfo: getTotalsInfo
+        updateStorage: updateStorage        
     }
 };
 
