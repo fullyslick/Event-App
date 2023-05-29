@@ -45,7 +45,7 @@
 
 .event-tile__details-category {
   font-size: var(--font-s);
-  padding: 0 8px;
+  padding: 0 12px;
   background-color: var(--color-theme-blue-dark);
   color: var(--color-theme-blue-white);
   border-radius: 20px;
