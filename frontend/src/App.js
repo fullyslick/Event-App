@@ -1,11 +1,15 @@
+import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import Home from './pages/Home';
 import Error from './pages/Error';
-import './App.css';
 import RootLayout from './pages/Root';
 import WishList from './pages/WishList';
 import CreateEvent from './pages/CreateEvent';
-import { useEffect } from 'react';
+import EventDetail from './pages/EventDetail';
+
+import './App.css';
+
 import localStorageHelper from './utils/local-storage';
 
 const router = createBrowserRouter([
@@ -17,6 +21,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'wishlist', element: <WishList /> },
       { path: 'new-event', element: <CreateEvent /> },
+      { path: '/event/:eventId', element: <EventDetail /> }
     ]
   }
 ]);

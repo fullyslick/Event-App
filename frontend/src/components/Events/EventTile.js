@@ -14,7 +14,7 @@ const EventTile = ({ event }) => {
 
     return (
         <div className={classes['event-tile']}>
-            <Link to={`/events/${id}`} className={classes['event-tile__link']}>
+            <Link to={`/event/${id}`} className={classes['event-tile__link']}>
                 <Image className={classes['event-tile__image']} src={image} alt={title} />
 
             </Link>
