@@ -1,7 +1,9 @@
-import EventsList from "../components/Events/EventList";
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { getEventsData } from '../store/event-actions';
+
+import EventsList from "../components/Events/EventList";
 import Notification from "../components/UI/Notification";
 import ContentWrapper from "../components/Layout/ContentWrapper";
 import Loader from "../components/UI/Loader";
