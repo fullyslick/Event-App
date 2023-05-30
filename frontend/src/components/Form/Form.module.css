@@ -1,0 +1,26 @@
+.form {
+  outline: solid olivedrab 1px;
+  padding: 16px;
+}
+
+.form__item {
+  margin: 16px 0;
+}
+
+.form__label {
+  font-weight: bold;
+  margin-right: 16px;
+}
+.form__input {
+  min-width: 300px;
+  padding: 8px 16px;
+  border-radius: 16px;
+}
+
+.form__error {
+  color: var(--color-theme-red);
+}
+
+:global(.react-datepicker-wrapper) {
+  width: auto;
+}
