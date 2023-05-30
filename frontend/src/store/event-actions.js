@@ -5,6 +5,7 @@ import { getEvents, getEventDetails } from '../utils/event-api';
 export const getEventsData = () => {
   return async (dispatch) => {
     try {
+      dispatch(uiActions.resetError());
       dispatch(uiActions.setLoader(true));
 
       const eventsData = await getEvents();
@@ -27,6 +28,7 @@ export const getEventsData = () => {
 export const getSingleEvent = (eventId) => {
   return async (dispatch) => {
     try {
+      dispatch(uiActions.resetError());
       dispatch(uiActions.setLoader(true));
 
       const eventData = await getEventDetails(eventId);
