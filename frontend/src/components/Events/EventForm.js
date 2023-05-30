@@ -1,16 +1,34 @@
-import { Formik, Form } from 'formik';
-import validationSchema from '../../validators/validation-shema';
+import { useSelector, useDispatch } from 'react-redux';
+import { addNewEvent } from '../../store/event-actions';
 
-import classes from './EventForm.module.css';
-import categoryNames from '../../utils/category-names';
+import { Formik, Form } from 'formik';
+import validationSchema from '../../validators/validation-schema';
 
 import Input from '../Form/Input';
 import DatePickerField from '../Form/DatePicker';
 import Select from '../Form/Select';
+import Loader from '../UI/Loader';
+
+import classes from './EventForm.module.css';
+import categoryNames from '../../utils/category-names';
+import transformEventData from '../../utils/transform-event-data';
 
 const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 
 const EventForm = () => {
+  const isLoading = useSelector((state) => state.ui.isLoading);
+  const dispatch = useDispatch();
+
+  const handleFormSubmit = (values, props) => {
+    // should disable submit  button
+
+    const event = transformEventData(values);
+
+    dispatch(addNewEvent(event));
+    props.setSubmitting(false);
+
+    // redirect user to events page/home
+  };
   return (
     <Formik
       initialValues={{
@@ -25,14 +43,10 @@ const EventForm = () => {
         price: '',
       }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={handleFormSubmit}
     >
       <Form className={classes['event-form']}>
+        {isLoading && <Loader />}
         <Input
           label='Title'
           name='title'
@@ -78,6 +92,7 @@ const EventForm = () => {
           name='capacity'
           type='number'
           step='1'
+          min='1'
           onKeyPress={(event) => {
             // Disallow decimals
             if (!/[0-9]/.test(event.key)) {
@@ -90,7 +105,7 @@ const EventForm = () => {
           label='Ticket Price'
           name='price'
           type='number'
-          placeholder='e.g 1.25 or 0 for free events'
+          placeholder='e.g 1.25 or leave empty for free event'
         />
         <button type='submit'>Create Event</button>
       </Form>
