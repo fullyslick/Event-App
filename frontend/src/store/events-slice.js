@@ -107,14 +107,6 @@ const eventsSlice = createSlice({
       let onLoadTotalPrice = 0;
       const eventsData = [...action.payload];
 
-      // Get created events and add them to the fetched data
-      const createdEvents = localStorageHelper.getCreatedEvents();
-
-      if (createdEvents.length) {
-        // Add created events from local cache to in front of the fetched events
-        eventsData.unshift(...createdEvents);
-      }
-
       // Get data from localStorage wishlist
       const localWishlist = localStorageHelper.getLocalWishlist();
 
@@ -196,8 +188,6 @@ const eventsSlice = createSlice({
     },
     createEvent(state, action) {
       state.events.unshift(action.payload);
-
-      localStorageHelper.updateCreatedEvents(action.payload);
     },
   },
 });

@@ -2,7 +2,6 @@ const storageKey = 'userEventData';
 
 const initialCache = {
   wishlist: {},
-  createdEvents: [],
 };
 
 const helperModule = () => {
@@ -44,28 +43,6 @@ const helperModule = () => {
     updateStorage('wishlist', data);
   }
 
-  function updateCreatedEvents(data) {
-    if (!hasLocalStorageData()) {
-      initStorage();
-    }
-
-    let createdEventsCache = JSON.parse(
-      localStorage.getItem(storageKey)
-    ).createdEvents;
-
-    createdEventsCache.push(data);
-
-    updateStorage('createdEvents', createdEventsCache);
-  }
-
-  function getCreatedEvents() {
-    if (hasLocalStorageData()) {
-      return JSON.parse(localStorage.getItem(storageKey)).createdEvents;
-    }
-
-    return {};
-  }
-
   function resetWishListItem(eventId) {
     let localStorageWishlist = JSON.parse(
       localStorage.getItem(storageKey)
@@ -91,11 +68,9 @@ const helperModule = () => {
     initStorage: initStorage,
     rebuiltStorage: rebuiltStorage,
     updateLocalWishlist: updateLocalWishlist,
-    updateCreatedEvents: updateCreatedEvents,
     resetWishListItem: resetWishListItem,
     hasLocalStorageData: hasLocalStorageData,
     getLocalWishlist: getLocalWishlist,
-    getCreatedEvents: getCreatedEvents,
   };
 };
 
