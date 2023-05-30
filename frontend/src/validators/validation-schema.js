@@ -21,10 +21,7 @@ const validationSchema = Yup.object({
   capacity: Yup.number()
     .min(1, 'Minimum capacity should be at least 1')
     .required('Required'),
-  price: Yup.number().min(
-    1,
-    'Minimum price is 1.00 or leave empty for free events'
-  ),
+  price: Yup.number().min(1, 'Minimum price is 1.00').required('Required'),
 });
 
 export default validationSchema;
