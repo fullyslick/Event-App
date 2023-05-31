@@ -1,13 +1,14 @@
 # How to test
-Add File in `config.json` file in `JS Training\Events-App\frontend\src\utils` with the following content:
+
+Add File in `config.json` file in [JS Training\Events-App\frontend\src\utils](https://github.com/fullyslick/Event-App/blob/frontend/frontend/src/utils/config.json) with the following content:
 
 ```json
 {
   "ORGANIZATION_ID": "KEY_FROM_EVENTBRITE",
-  "API_TOKEN": "TOKEN_FROM_EVENTBRITE",
+  "API_TOKEN": "TOKEN_FROM_EVENTBRITE"
 }
-
 ```
+
 # Node Versions
 
 Tested on
