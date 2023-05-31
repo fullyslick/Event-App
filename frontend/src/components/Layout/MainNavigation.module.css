@@ -1,0 +1,38 @@
+.header {
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-theme-blue-dark);
+  color: var(--color-theme-blue-white);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  gap: 2rem;
+}
+
+.list a {
+  text-decoration: none;
+  color: var(--color-primary-400);
+  font-weight: bold;
+}
+
+.list a:hover,
+.list a.active {
+  color: var(--color-primary-800);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .list {
+    display: flex;
+    gap: 16px;
+  }
+
+  .list a {
+    font-size: var(--font-m);
+  }
+}

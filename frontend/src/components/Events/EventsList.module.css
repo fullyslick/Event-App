@@ -1,0 +1,28 @@
+.events {
+  margin: 2rem auto;
+}
+
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+}
+
+.item {
+  width: 33.3333333333%;
+  padding: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .item {
+    width: 50%;
+    padding: 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .item {
+    width: 100%;
+    padding: 8px;
+  }
+}

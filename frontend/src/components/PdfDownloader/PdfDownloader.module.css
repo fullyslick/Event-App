@@ -1,0 +1,34 @@
+.pdf-link {
+  display: block;
+  margin: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: var(--font-l);
+  transition: all 0.3s;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}
+
+.pdf-link--content {
+  padding: 16px;
+  background-color: var(--color-theme-red);
+  color: white;
+  border: solid 4px var(--color-theme-red);
+  border-radius: 10px;
+  display: inline-block;
+  opacity: 1;
+  transition: all 0.3s linear;
+}
+
+.pdf-link--content:hover {
+  color: var(--color-theme-red);
+  border: solid 4px var(--color-theme-red);
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.pdf-link--content.pdf-link--loading {
+  opacity: 0.4;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}

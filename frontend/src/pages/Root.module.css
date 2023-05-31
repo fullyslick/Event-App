@@ -1,0 +1,10 @@
+.main {
+  margin: 16px auto;
+  text-align: center;
+  max-width: 1248px;
+  width: 100%;
+  padding: 0 20px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+}

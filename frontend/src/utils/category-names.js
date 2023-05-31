@@ -1,0 +1,25 @@
+const categoryNames = [
+  { name: 'Music', id: '103' },
+  { name: 'Business & Professional', id: '101' },
+  { name: 'Food & Drink', id: '110' },
+  { name: 'Community & Culture', id: '113' },
+  { name: 'Performing & Visual Arts', id: '105' },
+  { name: 'Film, Media & Entertainment', id: '104' },
+  { name: 'Sports & Fitness', id: '108' },
+  { name: 'Health & Wellness', id: '107' },
+  { name: 'Science & Technology', id: '102' },
+  { name: 'Travel & Outdoor', id: '109' },
+  { name: 'Charity & Causes', id: '111' },
+  { name: 'Religion & Spirituality', id: '114' },
+  { name: 'Family & Education', id: '115' },
+  { name: 'Seasonal & Holiday', id: '116' },
+  { name: 'Government & Politics', id: '112' },
+  { name: 'Fashion & Beauty', id: '106' },
+  { name: 'Home & Lifestyle', id: '117' },
+  { name: 'Auto, Boat & Air', id: '118' },
+  { name: 'Hobbies & Special Interest', id: '119' },
+  { name: 'Other', id: '199' },
+  { name: 'School Activities', id: '120' },
+];
+
+export default categoryNames;

@@ -13,35 +13,57 @@
   --color-gray-800: #31302e;
   --color-gray-900: #1f1d1b;
 
-  --color-primary-100: #fcf3e1;
-  --color-primary-200: #fceccd;
-  --color-primary-300: #fae1af;
-  --color-primary-400: #fbd997;
-  --color-primary-500: #ffd37c;
-  --color-primary-600: #f9c762;
-  --color-primary-700: #fbc14d;
-  --color-primary-800: #fab833;
-  --color-primary-900: #f6ad1b;
+  /* Bedazzled Blue Color Palette */
+  --color-theme-blue-dark: #3d5a80;
+  --color-theme-blue-light: #98c1d9;
+  --color-theme-blue-white: #e0fbfc;
+  --color-theme-red: #ee6c4d;
+  --color-theme-dark: #293241;
 
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  /* Box Shadow */
+  --box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
+  --box-shadow-light: 0 0 10px -4px rgba(0, 0, 0, 0.65);
+  --box-shadow-light-hover: 0 0 18px -4px rgba(0, 0, 0, 0.65);
+
+  /* Font sizes */
+  --font-xxl: 24px;
+  --font-xl: 20px;
+  --font-l: 16px;
+  --font-m: 14px;
+  --font-s: 12px;
+
+  font-family: 'DM Sans', sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: var(--color-gray-900);
-  background-color: var(--color-gray-200);
+  color: var(--color-theme-dark);
+  background: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
 
+html,
+body,
+.root {
+  margin: 0;
+  height: 100%;
+}
+
+.root {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 body {
-  margin: 0;
+  scrollbar-gutter: stable;
 }
 
 ul {
@@ -50,7 +72,7 @@ ul {
   padding: 0;
 }
 
-main {
-  margin: 2rem auto;
-  text-align: center;
+button,
+input {
+  font-family: 'DM Sans', sans-serif;
 }

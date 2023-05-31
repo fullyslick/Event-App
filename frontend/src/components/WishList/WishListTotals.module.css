@@ -1,0 +1,15 @@
+.wishlist-totals {
+  margin: 8px;
+  padding: 8px;
+  text-align: left;
+}
+
+.wishlist-totals p {
+  margin: 0;
+}
+
+.wishlist-totals--title {
+  font-weight: bold;
+  color: var(--color-theme-blue-dark);
+  margin-right: 4px;
+}
