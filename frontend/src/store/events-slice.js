@@ -25,20 +25,17 @@ const eventsSlice = createSlice({
         return;
       }
 
+      // Update Totals
+      state.totalPrice += qty * stateEvents[updatedEventIndex].price;
+
+      state.totalWishList += qty;
+
       // Update Redux state (ok with Immer)
       stateEvents[updatedEventIndex].availableTickets -= qty;
 
       stateEvents[updatedEventIndex].ticketsWishList += qty;
 
-      // Update Totals
-      state.totalPrice +=
-        stateEvents[updatedEventIndex].ticketsWishList *
-        stateEvents[updatedEventIndex].price;
-
-      state.totalWishList += qty;
-
       // Update local storage
-
       // If localStorage data was deleted by user just re-build it
       if (!localStorageHelper.hasLocalStorageData()) {
         localStorageHelper.rebuiltStorage(stateEvents);
@@ -71,19 +68,18 @@ const eventsSlice = createSlice({
         return;
       }
 
-      // If the event's wishlist is 0 return early
-      if (!stateEvents[updatedEventIndex].ticketsWishList) {
-        return;
-      }
+      state.totalWishList -= stateEvents[updatedEventIndex].ticketsWishList;
+
+      state.totalPrice -=
+        stateEvents[updatedEventIndex].ticketsWishList *
+        stateEvents[updatedEventIndex].price;
 
       // Update Redux state (ok with Immer)
-      stateEvents[updatedEventIndex].availableTickets += 1;
+      // Reset available tickets = capacity
+      stateEvents[updatedEventIndex].availableTickets =
+        stateEvents[updatedEventIndex].capacity;
 
-      stateEvents[updatedEventIndex].ticketsWishList -= 1;
-
-      state.totalWishList -= 1;
-
-      state.totalPrice -= stateEvents[updatedEventIndex].price;
+      stateEvents[updatedEventIndex].ticketsWishList = 0;
 
       // Update local storage
 
@@ -97,7 +93,7 @@ const eventsSlice = createSlice({
       const localWishlist = localStorageHelper.getLocalWishlist();
 
       if (localWishlist.hasOwnProperty(updatedEventId)) {
-        localWishlist[updatedEventId] -= 1;
+        localWishlist[updatedEventId] = 0;
       }
 
       localStorageHelper.updateLocalWishlist(localWishlist);

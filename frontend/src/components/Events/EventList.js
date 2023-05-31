@@ -2,13 +2,13 @@ import classes from './EventsList.module.css';
 import EventTile from './EventTile';
 import PropTypes from 'prop-types';
 
-function EventsList({ events }) {
+function EventsList({ events, hasRemove }) {
   return (
     <div className={classes.events}>
       <ul className={classes.list}>
         {events.map((event) => (
           <li key={event.id} className={classes.item}>
-            <EventTile event={event} />
+            <EventTile event={event} hasRemove={hasRemove} />
           </li>
         ))}
       </ul>
@@ -20,6 +20,7 @@ export default EventsList;
 
 EventsList.defaultProps = {
   events: [],
+  hasRemove: false,
 };
 
 EventsList.propTypes = {
@@ -37,4 +38,5 @@ EventsList.propTypes = {
       currency: PropTypes.string.isRequired,
     })
   ),
+  hasRemove: PropTypes.bool,
 };
