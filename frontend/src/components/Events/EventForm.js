@@ -74,7 +74,14 @@ const EventForm = () => {
           label='Title'
           name='title'
           type='text'
+          maxLength={140}
           placeholder='Event Title'
+        />
+        <Input
+          label='Event Image Url'
+          name='image'
+          type='text'
+          placeholder='https://myimage.jpg'
         />
         <Input
           label='Summary'
@@ -88,19 +95,15 @@ const EventForm = () => {
           label='Location'
           name='location'
           type='text'
+          maxLength={140}
           placeholder='e.g. Royal Albert Hall'
         />
         <Input
           label='Address'
           name='address'
           type='text'
+          maxLength={140}
           placeholder='Street Name, Number, Post Code'
-        />
-        <Input
-          label='Event Image Url'
-          name='image'
-          type='text'
-          placeholder='https://myimage.jpg'
         />
         <Select label='Select Category' name='category'>
           <option value=''>Select category</option>
@@ -128,7 +131,7 @@ const EventForm = () => {
           label='Ticket Price'
           name='price'
           type='number'
-          placeholder='e.g 1.25 or leave empty for free event'
+          placeholder='e.g 1.25'
         />
         <button
           className={classes['event-form__submit-btn']}
