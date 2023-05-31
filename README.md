@@ -1,6 +1,7 @@
-# How to test
+# How To Run
 
-Add File in `config.json` file in [JS Training\Events-App\frontend\src\utils](https://github.com/fullyslick/Event-App/blob/frontend/frontend/src/utils/config.json) with the following content:
+Edit file `config.json` in [/frontend/src/utils](https://github.com/fullyslick/Event-App/blob/frontend/frontend/src/utils/config.json).
+Add your **organization_id** and **api_token** from Eventbrite.
 
 ```json
 {
@@ -9,9 +10,13 @@ Add File in `config.json` file in [JS Training\Events-App\frontend\src\utils](ht
 }
 ```
 
-# Node Versions
+Go to `frontend` folder and install packages.
 
-Tested on
+Run `npm start` or `yarn start` in the same folder.
+
+# Supported Node Versions
+
+Tested on:
 
 ```
 18.11.0
