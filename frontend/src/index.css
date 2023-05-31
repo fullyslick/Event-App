@@ -53,7 +53,7 @@ body,
 .root {
   margin: 0;
   height: 100%;
-  overflow: auto;
+  overflow: auto; /* fallback */
   overflow: overlay;
 }
 
