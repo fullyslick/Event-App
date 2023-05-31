@@ -30,9 +30,13 @@ export const DatePickerField = ({ label, ...props }) => {
           setFieldValue(field.name, val);
         }}
       />
-      {meta.touched && meta.error ? (
-        <div className={classes['form__error']}>{meta.error}</div>
-      ) : null}
+      <div
+        className={`${classes['form__error']} ${
+          meta.touched && meta.error ? classes['form__error--active'] : ''
+        }`}
+      >
+        {meta.error}
+      </div>
     </div>
   );
 };

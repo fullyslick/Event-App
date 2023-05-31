@@ -125,7 +125,11 @@ const EventForm = () => {
           type='number'
           placeholder='e.g 1.25 or leave empty for free event'
         />
-        <button type='submit' disabled={isLoading}>
+        <button
+          className={classes['form__submit-btn']}
+          type='submit'
+          disabled={isLoading}
+        >
           Create Event
         </button>
       </Form>

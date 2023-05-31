@@ -13,10 +13,19 @@ const Select = ({ label, ...props }) => {
       >
         {label}
       </label>
-      <select id={props.name} {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className='error'>{meta.error}</div>
-      ) : null}
+      <select
+        className={classes['form__select']}
+        id={props.name}
+        {...field}
+        {...props}
+      />
+      <div
+        className={`${classes['form__error']} ${
+          meta.touched && meta.error ? classes['form__error--active'] : ''
+        }`}
+      >
+        {meta.error}
+      </div>
     </div>
   );
 };
