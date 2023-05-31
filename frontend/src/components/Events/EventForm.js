@@ -64,7 +64,12 @@ const EventForm = () => {
       onSubmit={handleFormSubmit}
     >
       <Form className={classes['event-form']}>
-        {isLoading && <Loader />}
+        {isLoading && (
+          <>
+            <div className={classes['event-form__loader-overlay']}></div>
+            <Loader />
+          </>
+        )}
         <Input
           label='Title'
           name='title'
@@ -126,7 +131,7 @@ const EventForm = () => {
           placeholder='e.g 1.25 or leave empty for free event'
         />
         <button
-          className={classes['form__submit-btn']}
+          className={classes['event-form__submit-btn']}
           type='submit'
           disabled={isLoading}
         >
