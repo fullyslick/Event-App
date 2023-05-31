@@ -77,7 +77,7 @@ const EventTile = ({ event }) => {
             {ticketsWishList}
           </p>
         </div>
-        <Stepper id={id} ticketsInWishlist={ticketsWishList} />
+        <Stepper eventId={id} />
       </div>
     </div>
   );

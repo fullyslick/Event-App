@@ -83,7 +83,7 @@ const Event = ({ event }) => {
             {totalPrice}
           </p>
         </div>
-        <Stepper id={id} ticketsInWishlist={ticketsWishList} />
+        <Stepper eventId={id} />
       </div>
     </div>
   );
