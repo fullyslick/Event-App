@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik';
 import validationSchema from '../../validators/validation-schema';
 
 import Input from '../Form/Input';
+import TextArea from '../Form/TextArea';
 import DatePickerField from '../Form/DatePicker';
 import Select from '../Form/Select';
 import Loader from '../UI/Loader';
@@ -83,7 +84,7 @@ const EventForm = () => {
           type='text'
           placeholder='https://myimage.jpg'
         />
-        <Input
+        <TextArea
           label='Summary'
           name='summary'
           type='text'
