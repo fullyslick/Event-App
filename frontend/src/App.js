@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Error from './pages/Error';
@@ -21,9 +21,9 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'wishlist', element: <WishList /> },
       { path: 'new-event', element: <CreateEvent /> },
-      { path: '/event/:eventId', element: <EventDetail /> }
-    ]
-  }
+      { path: '/event/:eventId', element: <EventDetail /> },
+    ],
+  },
 ]);
 
 function App() {
