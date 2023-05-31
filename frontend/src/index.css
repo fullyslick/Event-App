@@ -53,14 +53,17 @@ body,
 .root {
   margin: 0;
   height: 100%;
-  overflow: auto; /* fallback */
-  overflow: overlay;
 }
 
 .root {
   display: flex;
   flex-flow: column;
   height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  scrollbar-gutter: stable;
 }
 
 ul {
