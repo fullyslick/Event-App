@@ -23,7 +23,7 @@ export const transformNewEventData = (inputValues) => {
     category: category,
     availableTickets: capacity,
     price: Math.floor(price * 100),
-    displayPrice: `${Math.floor(price * 100) / 100}`,
+    displayPrice: `${Math.round(price * 100) / 100}`,
     currency: 'USD',
     ticketsWishList: 0,
   };
