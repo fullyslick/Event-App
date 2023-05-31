@@ -10,37 +10,43 @@ import PdfDownloader from '../components/PdfDownloader/PdfDownloader';
 import classes from './WishList.module.css';
 
 const WishList = () => {
-    const hasEvents = useSelector(state => state.events.areEventsReplaced);
-    const events = useSelector(state => state.events.events);
-    const wishListEvents = events.filter(event => event.ticketsWishList);
-    const notification = useSelector(state => state.ui.notification);
-    const isLoading = useSelector(state => state.ui.isLoading);
+  const hasEvents = useSelector((state) => state.events.areEventsReplaced);
+  const events = useSelector((state) => state.events.events);
+  const wishListEvents = events.filter((event) => event.ticketsWishList);
+  const notification = useSelector((state) => state.ui.notification);
+  const isLoading = useSelector((state) => state.ui.isLoading);
 
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        // Get events data from API only if there is no data in Redux
-        if (!hasEvents) {
-            dispatch(getEventsData());
-        }
-    }, [dispatch, hasEvents]);
+  const dispatch = useDispatch();
 
-    return (
-        <ContentWrapper title="Wish List">
-            {isLoading ?
-                <Loader />
-                :
-                <>                    
-                    <div className={classes['wishlist-summary']}>
-                        <WishListTotals />
-                        <PdfDownloader events={wishListEvents} />
-                    </div>
-                    <EventsList events={wishListEvents} />
-                </>
-            }
-            {notification && !isLoading && <Notification status={notification.status} title={notification.title} message={notification.message} />}
-        </ContentWrapper>
-    );
-}
+  useEffect(() => {
+    // Get events data from API only if there is no data in Redux
+    if (!hasEvents) {
+      dispatch(getEventsData());
+    }
+  }, [dispatch, hasEvents]);
+
+  return (
+    <ContentWrapper title='Wish List'>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={classes['wishlist-summary']}>
+            <WishListTotals />
+            <PdfDownloader events={wishListEvents} />
+          </div>
+          <EventsList events={wishListEvents} />
+        </>
+      )}
+      {notification && !isLoading && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
+    </ContentWrapper>
+  );
+};
 
 export default WishList;
