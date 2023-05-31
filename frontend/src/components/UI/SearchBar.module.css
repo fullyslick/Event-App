@@ -20,5 +20,5 @@
 }
 
 .search-bar__input:focus {
-  border-color: solid 2px var(--color-theme-blue-dark);;
+  border-color: solid 2px var(--color-theme-blue-dark);
 }
