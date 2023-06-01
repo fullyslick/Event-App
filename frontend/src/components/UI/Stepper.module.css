@@ -1,7 +1,16 @@
 .stepper {
   display: flex;
-  margin: 4px 16px;
+  margin: 4px 0;
+  padding: 4px 16px;
+  flex-flow: column nowrap;
   justify-content: flex-end;
+}
+
+.stepper--buttons {
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-thin);
 }
 
 .stepper-value {
@@ -10,14 +19,13 @@
   line-height: 40px;
   font-weight: bold;
   font-size: var(--font-m);
-  border-top: solid 1px var(--color-gray-400);
-  border-bottom: solid 1px var(--color-gray-400);
 }
 
 .stepper-btn--minus {
   width: 40px;
   height: 40px;
-  border: solid 1px var(--color-gray-400);
+  border: none;
+  border-right: solid 1px var(--color-gray-200);
   border-radius: 5px 0 0 5px;
   cursor: pointer;
   font-size: var(--font-l);
@@ -26,8 +34,47 @@
 .stepper-btn--plus {
   width: 40px;
   height: 40px;
-  border: solid 1px var(--color-gray-400);
+  border: none;
+  border-left: solid 1px var(--color-gray-200);
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: var(--font-l);
+}
+
+.stepper--action {
+  margin: 16px 0 4px;
+  padding: 4px 8px;
+  font-size: var(--font-l);
+  background-color: var(--color-theme-red);
+  color: white;
+  border: solid 4px var(--color-theme-red);
+  border-radius: 5px;
+  display: inline-block;
+  opacity: 1;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  box-shadow: var(--box-shadow-thin);
+}
+
+.stepper--action:hover {
+  color: var(--color-theme-red);
+  border: solid 4px var(--color-theme-red);
+  background-color: white;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  .stepper--action:hover {
+    background-color: var(--color-theme-red);
+    color: white;
+    border: solid 4px var(--color-theme-red);
+    transition: all 0.3s;
+  }
+}
+
+.stepper-value-disabled,
+.stepper--action:disabled,
+.stepper--action[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
 }

@@ -22,6 +22,7 @@
 
   /* Box Shadow */
   --box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
+  --box-shadow-thin: 0 0 2px 0 rgba(0, 0, 0, 0.65);
   --box-shadow-light: 0 0 10px -4px rgba(0, 0, 0, 0.65);
   --box-shadow-light-hover: 0 0 18px -4px rgba(0, 0, 0, 0.65);
 

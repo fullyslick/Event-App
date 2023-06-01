@@ -38,22 +38,34 @@ const Stepper = ({ eventId }) => {
 
   return (
     <div className={classes['stepper']}>
+      <div className={classes['stepper--buttons']}>
+        <button
+          disabled={!eventCapacity}
+          className={classes['stepper-btn--minus']}
+          onClick={handleDecrement}
+        >
+          -
+        </button>
+        <span
+          className={`${classes['stepper-value']} ${
+            eventCapacity ? '' : classes['stepper-value-disabled']
+          }`}
+        >
+          {qty}
+        </span>
+        <button
+          disabled={!eventCapacity}
+          className={classes['stepper-btn--plus']}
+          onClick={handleIncrement}
+        >
+          +
+        </button>
+      </div>
       <button
+        className={classes['stepper--action']}
         disabled={!eventCapacity}
-        className={classes['stepper-btn--minus']}
-        onClick={handleDecrement}
+        onClick={handleAddToWishlist}
       >
-        -
-      </button>
-      <span className={classes['stepper-value']}>{qty}</span>
-      <button
-        disabled={!eventCapacity}
-        className={classes['stepper-btn--plus']}
-        onClick={handleIncrement}
-      >
-        +
-      </button>
-      <button disabled={!eventCapacity} onClick={handleAddToWishlist}>
         Add
       </button>
     </div>

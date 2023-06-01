@@ -87,7 +87,7 @@
 .event-tile__details-actions {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -98,5 +98,5 @@
 
 .event-tile__details-actions--availability {
   text-align: left;
-  padding: 0 16px;
+  padding: 8px 16px;
 }
