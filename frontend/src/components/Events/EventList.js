@@ -2,13 +2,17 @@ import classes from './EventsList.module.css';
 import EventTile from './EventTile';
 import PropTypes from 'prop-types';
 
-function EventsList({ events, hasRemove }) {
+function EventsList({ events, hasRemove, hasStepper }) {
   return (
     <div className={classes.events}>
       <ul className={classes.list}>
         {events.map((event) => (
           <li key={event.id} className={classes.item}>
-            <EventTile event={event} hasRemove={hasRemove} />
+            <EventTile
+              event={event}
+              hasRemove={hasRemove}
+              hasStepper={hasStepper}
+            />
           </li>
         ))}
       </ul>
@@ -21,6 +25,7 @@ export default EventsList;
 EventsList.defaultProps = {
   events: [],
   hasRemove: false,
+  hasStepper: true,
 };
 
 EventsList.propTypes = {
@@ -39,4 +44,5 @@ EventsList.propTypes = {
     })
   ),
   hasRemove: PropTypes.bool,
+  hasStepper: PropTypes.bool,
 };

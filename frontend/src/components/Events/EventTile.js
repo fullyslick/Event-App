@@ -9,7 +9,7 @@ import classes from './EventTile.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
-const EventTile = ({ event, hasRemove }) => {
+const EventTile = ({ event, hasRemove, hasStepper }) => {
   const {
     id,
     title,
@@ -94,7 +94,7 @@ const EventTile = ({ event, hasRemove }) => {
             {ticketsWishList}
           </p>
         </div>
-        <Stepper eventId={id} />
+        {hasStepper && <Stepper eventId={id} />}
       </div>
     </div>
   );
@@ -105,6 +105,7 @@ export default EventTile;
 EventTile.defaultProps = {
   events: {},
   hasRemove: false,
+  hasStepper: true,
 };
 
 EventTile.propTypes = {
@@ -121,4 +122,5 @@ EventTile.propTypes = {
     currency: PropTypes.string.isRequired,
   }),
   hasRemove: PropTypes.bool,
+  hasStepper: PropTypes.bool,
 };
