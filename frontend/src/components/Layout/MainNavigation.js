@@ -5,6 +5,8 @@ import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
   const wishlistCount = useSelector((state) => state.events.totalWishList);
+  const isAnimatedCounter = useSelector((state) => state.ui.isAnimatedCounter);
+
   return (
     <header className={classes.header}>
       <nav>
@@ -37,7 +39,13 @@ const MainNavigation = () => {
                 isActive ? classes.active : undefined
               }
             >
-              Wish List ({wishlistCount})
+              <span
+                className={`${classes['navigation-counter']} ${
+                  isAnimatedCounter ? classes['navigation-counter--bump'] : ''
+                }`}
+              >
+                Wish List ( {wishlistCount} )
+              </span>
             </NavLink>
           </li>
         </ul>

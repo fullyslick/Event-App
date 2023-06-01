@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './Stepper.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { eventsActions } from '../../store/events-slice';
+import { animateCounter } from '../../store/ui-actions';
 
 const Stepper = ({ eventId }) => {
   const [qty, setQty] = useState(0);
@@ -32,6 +33,7 @@ const Stepper = ({ eventId }) => {
   const handleAddToWishlist = () => {
     if (qty) {
       dispatch(eventsActions.addToWishLst({ id: eventId, qty: qty }));
+      dispatch(animateCounter());
       setQty(0);
     }
   };

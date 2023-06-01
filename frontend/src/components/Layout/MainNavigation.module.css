@@ -26,7 +26,7 @@
 .list a:hover,
 .list a.active {
   color: var(--color-primary-800);
-  text-decoration: underline;
+  border-bottom: 1px solid;
 }
 
 @media screen and (max-width: 600px) {
@@ -38,4 +38,15 @@
   .list a {
     font-size: var(--font-m);
   }
+}
+
+.navigation-counter {
+  display: inline-block;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+
+.navigation-counter.navigation-counter--bump {
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
 }
