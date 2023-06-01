@@ -20,7 +20,7 @@ const Event = ({ event }) => {
     address,
   } = event;
 
-  const eventDate = date.split('T')[0].split('-').join(' ');
+  const eventDate = date.split('T')[0].split('-').join(' / ');
   let eventTime = date.split('T')[1].split(':');
   eventTime.pop();
   eventTime = eventTime.join(':');
