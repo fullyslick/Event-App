@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
+import { eventsActions } from '../../store/events-slice';
+
 import PropTypes from 'prop-types';
 
 import classes from './EventTile.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
-const EventTile = ({ event }) => {
+const EventTile = ({ event, hasRemove, hasStepper }) => {
   const {
     id,
     title,
@@ -20,13 +23,27 @@ const EventTile = ({ event }) => {
     availableTickets,
   } = event;
 
-  const eventDate = date.split('T')[0].split('-').join(' ');
+  const eventDate = date.split('T')[0].split('-').join(' / ');
   let eventTime = date.split('T')[1].split(':');
   eventTime.pop();
   eventTime = eventTime.join(':');
 
+  const dispatch = useDispatch();
+
+  const handleRemove = () => {
+    dispatch(eventsActions.removeFromWishList(id));
+  };
+
   return (
     <div className={classes['event-tile']}>
+      {hasRemove && (
+        <button
+          className={classes['event-tile--remove']}
+          onClick={handleRemove}
+        >
+          ✖
+        </button>
+      )}
       <Link to={`/event/${id}`} className={classes['event-tile__link']}>
         <Image
           className={classes['event-tile__image']}
@@ -77,7 +94,7 @@ const EventTile = ({ event }) => {
             {ticketsWishList}
           </p>
         </div>
-        <Stepper id={id} ticketsInWishlist={ticketsWishList} />
+        {hasStepper && <Stepper eventId={id} />}
       </div>
     </div>
   );
@@ -87,6 +104,8 @@ export default EventTile;
 
 EventTile.defaultProps = {
   events: {},
+  hasRemove: false,
+  hasStepper: true,
 };
 
 EventTile.propTypes = {
@@ -102,4 +121,6 @@ EventTile.propTypes = {
     category: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
   }),
+  hasRemove: PropTypes.bool,
+  hasStepper: PropTypes.bool,
 };

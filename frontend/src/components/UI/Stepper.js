@@ -1,33 +1,74 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './Stepper.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { eventsActions } from '../../store/events-slice';
+import { animateCounter } from '../../store/ui-actions';
 
-const Stepper = ({ id, ticketsInWishlist }) => {
+const Stepper = ({ eventId }) => {
+  const [qty, setQty] = useState(0);
+
+  const eventCapacity = useSelector((state) =>
+    state.events.events.filter((event) => event.id === eventId)
+  )[0].availableTickets;
+
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch(eventsActions.addToWishLst(id));
+    if (qty === eventCapacity) {
+      return;
+    }
+
+    setQty((prevQty) => (prevQty += 1));
   };
 
   const handleDecrement = () => {
-    dispatch(eventsActions.removeFromWishList(id));
+    if (qty === 0) {
+      return;
+    }
+
+    setQty((prevQty) => (prevQty -= 1));
+  };
+
+  const handleAddToWishlist = () => {
+    if (qty) {
+      dispatch(eventsActions.addToWishLst({ id: eventId, qty: qty }));
+      dispatch(animateCounter());
+      setQty(0);
+    }
   };
 
   return (
     <div className={classes['stepper']}>
+      <div className={classes['stepper--buttons']}>
+        <button
+          disabled={!eventCapacity}
+          className={classes['stepper-btn--minus']}
+          onClick={handleDecrement}
+        >
+          -
+        </button>
+        <span
+          className={`${classes['stepper-value']} ${
+            eventCapacity ? '' : classes['stepper-value-disabled']
+          }`}
+        >
+          {qty}
+        </span>
+        <button
+          disabled={!eventCapacity}
+          className={classes['stepper-btn--plus']}
+          onClick={handleIncrement}
+        >
+          +
+        </button>
+      </div>
       <button
-        className={classes['stepper-btn--minus']}
-        onClick={handleDecrement}
+        className={classes['stepper--action']}
+        disabled={!eventCapacity}
+        onClick={handleAddToWishlist}
       >
-        -
-      </button>
-      <span className={classes['stepper-value']}>{ticketsInWishlist}</span>
-      <button
-        className={classes['stepper-btn--plus']}
-        onClick={handleIncrement}
-      >
-        +
+        Add
       </button>
     </div>
   );
@@ -36,6 +77,5 @@ const Stepper = ({ id, ticketsInWishlist }) => {
 export default Stepper;
 
 Stepper.propTypes = {
-  id: PropTypes.string.isRequired,
-  ticketsInWishlist: PropTypes.number.isRequired,
+  eventId: PropTypes.string.isRequired,
 };

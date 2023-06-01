@@ -13,7 +13,7 @@ const eventsSlice = createSlice({
   initialState: initialEventState,
   reducers: {
     addToWishLst(state, action) {
-      const updatedEventId = action.payload;
+      const { id: updatedEventId, qty } = action.payload;
       const stateEvents = state.events;
 
       const updatedEventIndex = stateEvents.findIndex(
@@ -25,22 +25,17 @@ const eventsSlice = createSlice({
         return;
       }
 
-      // If availableTickets for this event are 0 return early
-      if (!stateEvents[updatedEventIndex].availableTickets) {
-        return;
-      }
+      // Update Totals
+      state.totalPrice += qty * stateEvents[updatedEventIndex].price;
+
+      state.totalWishList += qty;
 
       // Update Redux state (ok with Immer)
-      stateEvents[updatedEventIndex].availableTickets -= 1;
+      stateEvents[updatedEventIndex].availableTickets -= qty;
 
-      stateEvents[updatedEventIndex].ticketsWishList += 1;
-
-      state.totalWishList += 1;
-
-      state.totalPrice += stateEvents[updatedEventIndex].price;
+      stateEvents[updatedEventIndex].ticketsWishList += qty;
 
       // Update local storage
-
       // If localStorage data was deleted by user just re-build it
       if (!localStorageHelper.hasLocalStorageData()) {
         localStorageHelper.rebuiltStorage(stateEvents);
@@ -51,9 +46,11 @@ const eventsSlice = createSlice({
       const localWishlist = localStorageHelper.getLocalWishlist();
 
       if (localWishlist.hasOwnProperty(updatedEventId)) {
-        localWishlist[updatedEventId] += 1;
+        localWishlist[updatedEventId] +=
+          stateEvents[updatedEventIndex].ticketsWishList;
       } else {
-        localWishlist[updatedEventId] = 1;
+        // New entry added to localStorage
+        localWishlist[updatedEventId] = qty;
       }
 
       localStorageHelper.updateLocalWishlist(localWishlist);
@@ -71,19 +68,18 @@ const eventsSlice = createSlice({
         return;
       }
 
-      // If the event's wishlist is 0 return early
-      if (!stateEvents[updatedEventIndex].ticketsWishList) {
-        return;
-      }
+      state.totalWishList -= stateEvents[updatedEventIndex].ticketsWishList;
+
+      state.totalPrice -=
+        stateEvents[updatedEventIndex].ticketsWishList *
+        stateEvents[updatedEventIndex].price;
 
       // Update Redux state (ok with Immer)
-      stateEvents[updatedEventIndex].availableTickets += 1;
+      // Reset available tickets = capacity
+      stateEvents[updatedEventIndex].availableTickets =
+        stateEvents[updatedEventIndex].capacity;
 
-      stateEvents[updatedEventIndex].ticketsWishList -= 1;
-
-      state.totalWishList -= 1;
-
-      state.totalPrice -= stateEvents[updatedEventIndex].price;
+      stateEvents[updatedEventIndex].ticketsWishList = 0;
 
       // Update local storage
 
@@ -97,7 +93,7 @@ const eventsSlice = createSlice({
       const localWishlist = localStorageHelper.getLocalWishlist();
 
       if (localWishlist.hasOwnProperty(updatedEventId)) {
-        localWishlist[updatedEventId] -= 1;
+        localWishlist[updatedEventId] = 0;
       }
 
       localStorageHelper.updateLocalWishlist(localWishlist);

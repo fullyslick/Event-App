@@ -35,7 +35,7 @@ const WishList = () => {
             <WishListTotals />
             <PdfDownloader events={wishListEvents} />
           </div>
-          <EventsList events={wishListEvents} />
+          <EventsList events={wishListEvents} hasRemove hasStepper={false} />
         </>
       )}
       {notification && !isLoading && (

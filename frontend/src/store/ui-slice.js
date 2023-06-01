@@ -5,6 +5,7 @@ const uiSlice = createSlice({
   initialState: {
     isLoading: false,
     notification: null,
+    isAnimatedCounter: false,
   },
   reducers: {
     setLoader(state, action) {
@@ -23,6 +24,9 @@ const uiSlice = createSlice({
         title: '',
         message: '',
       };
+    },
+    toggleIsCounter(state, action) {
+      state.isAnimatedCounter = action.payload;
     },
   },
 });
