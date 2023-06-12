@@ -1,13 +1,17 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import classes from './PdfDownloader.module.css';
+
 import PdfDocument from './PdfDocument';
 import { useSelector } from 'react-redux';
+import {
+  selectTotalWishList,
+  selectTotalPrice,
+} from '../../store/events-slice';
+
+import classes from './PdfDownloader.module.css';
 
 const PdfDownloader = ({ events }) => {
-  const totalWishList = useSelector((state) => state.events.totalWishList);
-  const totalPrice = useSelector(
-    (state) => state.events.totalPrice / 100 + ' USD'
-  );
+  const totalWishList = useSelector(selectTotalWishList);
+  const totalPrice = useSelector(selectTotalPrice) / 100 + ' USD';
 
   const PdfDocumentWithData = () => (
     <PdfDocument

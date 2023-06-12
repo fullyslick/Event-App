@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'; // Uses Immer behind the scenes so it is safe to mutate state directly
+import { RootState } from '.';
+
 import type { PayloadAction } from '@reduxjs/toolkit';
 import localStorageHelper from '../utils/local-storage';
 
@@ -194,5 +196,13 @@ const eventsSlice = createSlice({
 });
 
 export const eventsActions = eventsSlice.actions;
+
+// Selectors
+export const selectEvents = (state: RootState) => state.events.events;
+export const selectTotalWishList = (state: RootState) =>
+  state.events.totalWishList;
+export const selectTotalPrice = (state: RootState) => state.events.totalPrice;
+export const selectAreEventsReplaced = (state: RootState) =>
+  state.events.areEventsReplaced;
 
 export default eventsSlice;

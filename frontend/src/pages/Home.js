@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getEventsData } from '../store/event-actions';
+import { selectIsLoading, selectNotification } from '../store/ui-slice';
+import { selectEvents, selectAreEventsReplaced } from '../store/events-slice';
 
 import EventsList from '../components/Events/EventList';
 import Notification from '../components/UI/Notification';
@@ -11,8 +13,8 @@ import SearchBar from '../components/UI/SearchBar';
 import CategoryTags from '../components/UI/CategoryTags';
 
 const Home = () => {
-  const hasEvents = useSelector((state) => state.events.areEventsReplaced);
-  const events = useSelector((state) => state.events.events);
+  const hasEvents = useSelector(selectAreEventsReplaced);
+  const events = useSelector(selectEvents);
 
   // Handles Search and Category filtering
   const categories = [...new Set(events.map((event) => event.category))];
@@ -32,8 +34,8 @@ const Home = () => {
   });
 
   // Handles on load UI
-  const notification = useSelector((state) => state.ui.notification);
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  const notification = useSelector(selectNotification);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 

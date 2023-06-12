@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getSingleEvent } from '../store/event-actions';
+import { selectIsLoading, selectNotification } from '../store/ui-slice';
+import { selectEvents } from '../store/events-slice';
 
 import ContentWrapper from '../components/Layout/ContentWrapper';
 import Event from '../components/Events/Event';
@@ -12,14 +14,14 @@ import Loader from '../components/UI/Loader';
 const EventDetail = () => {
   const params = useParams();
 
-  const event = useSelector((state) =>
-    state.events.events.filter((event) => event.id === params.eventId)
-  )[0];
+  const event = useSelector(selectEvents).find(
+    (event) => event.id === params.eventId
+  );
 
   const eventTitle = event?.title ? event.title : '';
 
-  const notification = useSelector((state) => state.ui.notification);
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  const notification = useSelector(selectNotification);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 
