@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getEventsData } from '../store/event-actions';
+import { selectIsLoading, selectNotification } from '../store/ui-slice';
 
 import EventsList from '../components/Events/EventList';
 import Notification from '../components/UI/Notification';
@@ -32,8 +33,8 @@ const Home = () => {
   });
 
   // Handles on load UI
-  const notification = useSelector((state) => state.ui.notification);
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  const notification = useSelector(selectNotification);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 

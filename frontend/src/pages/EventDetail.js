@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getSingleEvent } from '../store/event-actions';
+import { selectIsLoading, selectNotification } from '../store/ui-slice';
 
 import ContentWrapper from '../components/Layout/ContentWrapper';
 import Event from '../components/Events/Event';
@@ -18,8 +19,8 @@ const EventDetail = () => {
 
   const eventTitle = event?.title ? event.title : '';
 
-  const notification = useSelector((state) => state.ui.notification);
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  const notification = useSelector(selectNotification);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 

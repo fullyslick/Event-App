@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewEvent } from '../../store/event-actions';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+
+import { selectIsLoading } from '../../store/ui-slice';
 
 import { Formik, Form } from 'formik';
 import validationSchema from '../../validators/validation-schema';
@@ -11,15 +14,14 @@ import DatePickerField from '../Form/DatePicker';
 import Select from '../Form/Select';
 import Loader from '../UI/Loader';
 
-import classes from './EventForm.module.css';
 import categoryNames from '../../utils/category-names';
 import { transformNewEventData } from '../../utils/transform-event-data';
-import { useEffect, useRef } from 'react';
+import classes from './EventForm.module.css';
 
 const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 
 const EventForm = () => {
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  const isLoading = useSelector(selectIsLoading);
   const events = useSelector((state) => state.events.events);
 
   const dispatch = useDispatch();

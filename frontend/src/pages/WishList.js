@@ -1,20 +1,25 @@
+import { useEffect } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { getEventsData } from '../store/event-actions';
+import { selectIsLoading, selectNotification } from '../store/ui-slice';
+
 import ContentWrapper from '../components/Layout/ContentWrapper';
 import EventsList from '../components/Events/EventList';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getEventsData } from '../store/event-actions';
 import Notification from '../components/UI/Notification';
 import Loader from '../components/UI/Loader';
 import WishListTotals from '../components/WishList/WishListTotals';
 import PdfDownloader from '../components/PdfDownloader/PdfDownloader';
+
 import classes from './WishList.module.css';
 
 const WishList = () => {
   const hasEvents = useSelector((state) => state.events.areEventsReplaced);
   const events = useSelector((state) => state.events.events);
   const wishListEvents = events.filter((event) => event.ticketsWishList);
-  const notification = useSelector((state) => state.ui.notification);
-  const isLoading = useSelector((state) => state.ui.isLoading);
+
+  const notification = useSelector(selectNotification);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 

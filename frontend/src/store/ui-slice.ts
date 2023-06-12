@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '.';
 
 type notification = {
   status: string;
@@ -47,5 +48,11 @@ const uiSlice = createSlice({
 });
 
 export const uiActions = uiSlice.actions;
+
+// Selectors
+export const selectIsLoading = (state: RootState) => state.ui.isLoading;
+export const selectNotification = (state: RootState) => state.ui.notification;
+export const selectIsAnimatedCounter = (state: RootState) =>
+  state.ui.isAnimatedCounter;
 
 export default uiSlice;
