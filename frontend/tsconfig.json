@@ -19,7 +19,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx" // supports JSX code and should be compiled to React JSX code
+    "jsx": "react-jsx", // supports JSX code and should be compiled to React JSX code
+    "useUnknownInCatchVariables": false
   },
   "include": ["src"]
 }
