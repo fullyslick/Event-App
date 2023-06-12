@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5", // the target JS version to which the ts code will be transformed
+    "lib": [
+      // unlocks libraries installed by TS
+      "dom", // understands DOM types like HTMLInputElement used in NewTodo.tsx
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true, // allows adding of just .js files in the project, and importing of .js files
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true, // sets the strictest possible limitations to project, like we can not declare "any" value type
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx" // supports JSX code and should be compiled to React JSX code
+  },
+  "include": ["src"]
+}
