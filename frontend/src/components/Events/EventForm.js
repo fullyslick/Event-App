@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 
 import { selectIsLoading } from '../../store/ui-slice';
+import { useEffect, useRef } from 'react';
+
+import { selectIsLoading } from '../../store/ui-slice';
 
 import { Formik, Form } from 'formik';
 import validationSchema from '../../validators/validation-schema';

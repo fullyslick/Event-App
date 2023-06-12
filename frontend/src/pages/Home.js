@@ -36,6 +36,8 @@ const Home = () => {
   // Handles on load UI
   const notification = useSelector(selectNotification);
   const isLoading = useSelector(selectIsLoading);
+  const notification = useSelector(selectNotification);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 
