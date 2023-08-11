@@ -2,8 +2,9 @@ import { RequestHandler } from 'express';
 import { transformAllEvents } from '../utils/transform-data';
 import request from 'request';
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config({ path: '../env-data/.env' });
+dotenv.config({ path: path.resolve(__dirname, '../../env-data/.env') });
 
 const organizationId = process.env.ORGANIZATION_ID!;
 
@@ -12,10 +13,9 @@ const getEventsUrl = process.env.API_ALL_EVENTS_URL!.replace(
   organizationId
 );
 
-const getTodos: RequestHandler = (req, res) => {
+const getEvents: RequestHandler = (req, res) => {
   const url = `${process.env.API_BASE_URL}${getEventsUrl}`;
 
-  // Set the Authorization header with the Bearer token
   const headers = {
     Authorization: `Bearer ${process.env.API_TOKEN}`,
   };
@@ -40,3 +40,5 @@ const getTodos: RequestHandler = (req, res) => {
     }
   });
 };
+
+export { getEvents };
