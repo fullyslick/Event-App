@@ -1,39 +1,41 @@
-const transformAllEvents = (data: any) => {
+import { EventbriteEvent, EventbriteResponseEvent } from '../types/events';
+
+const transformAllEvents = (data: { events: EventbriteResponseEvent[] }) => {
   const { events } = data;
-  let eventsData = [];
+  let eventsData: EventbriteEvent[] = [];
 
   try {
     if (events?.length) {
-      eventsData = events.map((event: any) => {
+      eventsData = events.map((event) => {
         return transformEvent(event);
       });
     }
-    return Promise.resolve(eventsData);
+    return eventsData;
   } catch (error) {
-    return Promise.reject(new Error('Unable to transform data!'));
+    return new Error('Unable to transform data!');
   }
 };
 
-const transformEvent = (event: any) => {
-  const eventObj = {
-    id: event.id,
-    title: event.name.text,
-    description: event.description.text,
-    date: event.start.local,
-    location: event.venue?.name ? event.venue.name : 'Online',
-    address: event.venue?.address?.localized_address_display
+const transformEvent = (event: EventbriteResponseEvent) => {
+  const eventObj = new EventbriteEvent(
+    event.id,
+    event.name.text,
+    event.description.text,
+    event.start.local,
+    event.venue?.name ? event.venue.name : 'Online',
+    event.venue?.address?.localized_address_display
       ? event.venue.address.localized_address_display
       : '',
-    imageOriginal: event.logo.original.url,
-    image: event.logo.url,
-    category: event.category.name,
-    availableTickets: event.capacity,
-    capacity: event.capacity,
-    price: event.ticket_availability.maximum_ticket_price.value,
-    displayPrice: event.ticket_availability.maximum_ticket_price.major_value,
-    currency: event.ticket_availability.maximum_ticket_price.currency,
-    ticketsWishList: 0,
-  };
+    event.logo.original.url,
+    event.logo.url,
+    event.category.name,
+    event.capacity,
+    event.capacity,
+    event.ticket_availability.maximum_ticket_price.value,
+    event.ticket_availability.maximum_ticket_price.major_value,
+    event.ticket_availability.maximum_ticket_price.currency,
+    0
+  );
 
   return eventObj;
 };
