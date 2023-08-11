@@ -1,6 +1,6 @@
 const express = require('express');
 const request = require('request');
-require('dotenv').config();
+require('dotenv').config({ path: '../env-data/.env' });
 
 const transformData = require('./utils/transform-data');
 
