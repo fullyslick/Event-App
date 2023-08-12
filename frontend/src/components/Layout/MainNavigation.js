@@ -1,11 +1,15 @@
 import { NavLink } from 'react-router-dom';
+
+import { selectIsAnimatedCounter } from '../../store/ui-slice';
+import { selectTotalWishList } from '../../store/events-slice';
+
 import { useSelector } from 'react-redux';
 
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const wishlistCount = useSelector((state) => state.events.totalWishList);
-  const isAnimatedCounter = useSelector((state) => state.ui.isAnimatedCounter);
+  const wishlistCount = useSelector(selectTotalWishList);
+  const isAnimatedCounter = useSelector(selectIsAnimatedCounter);
 
   return (
     <header className={classes.header}>

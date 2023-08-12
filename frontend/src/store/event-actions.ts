@@ -1,9 +1,12 @@
 import { uiActions } from './ui-slice';
 import { eventsActions } from './events-slice';
 import { getEvents, getEventDetails } from '../utils/event-api';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+
+import { event } from '../types';
 
 export const getEventsData = () => {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     try {
       dispatch(uiActions.resetError());
       dispatch(uiActions.setLoader(true));
@@ -25,8 +28,8 @@ export const getEventsData = () => {
   };
 };
 
-export const getSingleEvent = (eventId) => {
-  return async (dispatch) => {
+export const getSingleEvent = (eventId: number) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     try {
       dispatch(uiActions.resetError());
       dispatch(uiActions.setLoader(true));
@@ -48,8 +51,8 @@ export const getSingleEvent = (eventId) => {
   };
 };
 
-export const addNewEvent = (eventData) => {
-  return (dispatch) => {
+export const addNewEvent = (eventData: event) => {
+  return (dispatch: Dispatch<AnyAction>) => {
     dispatch(uiActions.setLoader(true));
 
     // Used to simulate ajax request and show loader on UI

@@ -1,7 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'; // Uses Immer behind the scenes so it is safe to mutate state directly
+import { RootState } from '.';
+
+import type { PayloadAction } from '@reduxjs/toolkit';
 import localStorageHelper from '../utils/local-storage';
 
-const initialEventState = {
+import { events, event } from '../types';
+
+interface eventsState {
+  events: events;
+  totalWishList: number;
+  totalPrice: number;
+  areEventsReplaced: boolean;
+}
+
+const initialEventState: eventsState = {
   events: [],
   totalWishList: 0,
   totalPrice: 0,
@@ -12,18 +24,13 @@ const eventsSlice = createSlice({
   name: 'events',
   initialState: initialEventState,
   reducers: {
-    addToWishLst(state, action) {
+    addToWishLst(state, action: PayloadAction<{ id: number; qty: number }>) {
       const { id: updatedEventId, qty } = action.payload;
       const stateEvents = state.events;
 
       const updatedEventIndex = stateEvents.findIndex(
         (event) => event.id === updatedEventId
       );
-
-      // No such event found in state
-      if (updatedEventId < 0) {
-        return;
-      }
 
       // Update Totals
       state.totalPrice += qty * stateEvents[updatedEventIndex].price;
@@ -55,7 +62,7 @@ const eventsSlice = createSlice({
 
       localStorageHelper.updateLocalWishlist(localWishlist);
     },
-    removeFromWishList(state, action) {
+    removeFromWishList(state, action: PayloadAction<number>) {
       const updatedEventId = action.payload;
       const stateEvents = state.events;
 
@@ -98,7 +105,7 @@ const eventsSlice = createSlice({
 
       localStorageHelper.updateLocalWishlist(localWishlist);
     },
-    replaceEvents(state, action) {
+    replaceEvents(state, action: PayloadAction<events>) {
       let onLoadTotalWishList = 0;
       let onLoadTotalPrice = 0;
       const eventsData = [...action.payload];
@@ -147,7 +154,7 @@ const eventsSlice = createSlice({
       // Instead this flag is used
       state.areEventsReplaced = true;
     },
-    appendEvent(state, action) {
+    appendEvent(state, action: PayloadAction<event>) {
       const event = action.payload;
       // Get data from localStorage wishlist
       const localWishlist = localStorageHelper.getLocalWishlist();
@@ -182,12 +189,20 @@ const eventsSlice = createSlice({
       state.events.push(event);
       state.totalWishList = totalWishlistEvents;
     },
-    createEvent(state, action) {
+    createEvent(state, action: PayloadAction<event>) {
       state.events.unshift(action.payload);
     },
   },
 });
 
 export const eventsActions = eventsSlice.actions;
+
+// Selectors
+export const selectEvents = (state: RootState) => state.events.events;
+export const selectTotalWishList = (state: RootState) =>
+  state.events.totalWishList;
+export const selectTotalPrice = (state: RootState) => state.events.totalPrice;
+export const selectAreEventsReplaced = (state: RootState) =>
+  state.events.areEventsReplaced;
 
 export default eventsSlice;
