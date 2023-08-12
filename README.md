@@ -1,12 +1,21 @@
+# Description
+
+- Renders events configured on Eventbrite.
+- Adds new event
+- Adds selected event to wish list
+- Removes selected event from wish list
+- Downloads wish list
+
 # How To Run
 
 1. Cd to `backend` folder
 2. Install node modules
-3. Add you **ORGANIZATION_ID** and **API_TOKEN** in [.env](https://github.com/fullyslick/Event-App/blob/master/backend/.env) file
-4. Run server `npm server.js`
-5. In new terminal cd to `frontend`
-6. Install node modules
-7. Start the app `npm start` or `yarn start`
+3. Add your **ORGANIZATION_ID** and **API_TOKEN** in [.env](https://github.com/fullyslick/Event-App/blob/master/backend/env-data/.env) file
+4. Compile typescript `tsc`, files will be build in `dist` folder
+5. Run server `npm start`
+6. Open new terminal and cd to `frontend`
+7. Install node modules
+8. Start the app `npm start` or `yarn start`
 
 # How To Run Without Backend
 
