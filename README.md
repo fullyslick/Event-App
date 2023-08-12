@@ -1,6 +1,10 @@
+![image](https://github.com/fullyslick/Event-App/assets/25419271/d2252926-f7c8-410a-a5f0-38fd1c934494)
+
+
 # Description
 
-- Renders events configured on Eventbrite.
+- Renders events configured on Eventbrite
+- Filters events
 - Adds new event
 - Adds selected event to wish list
 - Removes selected event from wish list
