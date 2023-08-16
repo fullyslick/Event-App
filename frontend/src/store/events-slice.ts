@@ -24,7 +24,7 @@ const eventsSlice = createSlice({
   name: 'events',
   initialState: initialEventState,
   reducers: {
-    addToWishLst(state, action: PayloadAction<{ id: number; qty: number }>) {
+    addToWishLst(state, action: PayloadAction<{ id: string; qty: number }>) {
       const { id: updatedEventId, qty } = action.payload;
       const stateEvents = state.events;
 
@@ -62,7 +62,7 @@ const eventsSlice = createSlice({
 
       localStorageHelper.updateLocalWishlist(localWishlist);
     },
-    removeFromWishList(state, action: PayloadAction<number>) {
+    removeFromWishList(state, action: PayloadAction<string>) {
       const updatedEventId = action.payload;
       const stateEvents = state.events;
 
@@ -71,7 +71,7 @@ const eventsSlice = createSlice({
       );
 
       // No such event found in state
-      if (updatedEventId < 0) {
+      if (updatedEventIndex < 0) {
         return;
       }
 
@@ -198,7 +198,7 @@ const eventsSlice = createSlice({
 export const eventsActions = eventsSlice.actions;
 
 // Selectors
-export const selectEvents = (state: RootState) => state.events.events;
+export const selectEvents = (state: RootState): events => state.events.events;
 export const selectTotalWishList = (state: RootState) =>
   state.events.totalWishList;
 export const selectTotalPrice = (state: RootState) => state.events.totalPrice;

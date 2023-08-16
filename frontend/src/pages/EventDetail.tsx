@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getSingleEvent } from '../store/event-actions';
 import { selectIsLoading, selectNotification } from '../store/ui-slice';
 import { selectEvents } from '../store/events-slice';
+import { AppDispatch } from '../store';
 
 import ContentWrapper from '../components/Layout/ContentWrapper';
 import Event from '../components/Events/Event';
@@ -23,11 +24,11 @@ const EventDetail = () => {
   const notification = useSelector(selectNotification);
   const isLoading = useSelector(selectIsLoading);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   // Call API to get data about this event only if the entry do not exist in Redux
   useEffect(() => {
-    if (!event) {
+    if (!event && params.eventId) {
       dispatch(getSingleEvent(params.eventId));
     }
   }, [event, params.eventId, dispatch]);

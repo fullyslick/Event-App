@@ -1,9 +1,15 @@
 import classes from './Event.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
-import PropTypes from 'prop-types';
 
-const Event = ({ event }) => {
+import { event } from '../../types';
+import React from 'react';
+
+interface EventProps {
+  event: event;
+}
+
+const Event: React.FC<EventProps> = ({ event }) => {
   const {
     id,
     title,
@@ -21,7 +27,7 @@ const Event = ({ event }) => {
   } = event;
 
   const eventDate = date.split('T')[0].split('-').join(' / ');
-  let eventTime = date.split('T')[1].split(':');
+  let eventTime: string | string[] = date.split('T')[1].split(':');
   eventTime.pop();
   eventTime = eventTime.join(':');
   const totalPrice = (price * ticketsWishList) / 100;
@@ -90,25 +96,3 @@ const Event = ({ event }) => {
 };
 
 export default Event;
-
-Event.defaultProps = {
-  events: {},
-};
-
-Event.propTypes = {
-  event: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    imageOriginal: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    ticketsWishList: PropTypes.number.isRequired,
-    availableTickets: PropTypes.number.isRequired,
-    displayPrice: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    category: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-  }),
-};

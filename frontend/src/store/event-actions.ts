@@ -28,7 +28,7 @@ export const getEventsData = () => {
   };
 };
 
-export const getSingleEvent = (eventId: number) => {
+export const getSingleEvent = (eventId: string) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     try {
       dispatch(uiActions.resetError());
