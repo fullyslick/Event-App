@@ -1,4 +1,4 @@
-import classes from './Event.module.css';
+import styles from './Event.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
@@ -27,45 +27,44 @@ const Event: React.FC<EventProps> = ({ event }) => {
   } = event;
 
   const eventDate = date.split('T')[0].split('-').join(' / ');
+
   let eventTime: string | string[] = date.split('T')[1].split(':');
+
   eventTime.pop();
   eventTime = eventTime.join(':');
+
   const totalPrice = (price * ticketsWishList) / 100;
 
   return (
-    <div className={classes['event']}>
-      <div className={classes['event__image--frame']}>
-        <Image
-          className={classes['event__image']}
-          src={imageOriginal}
-          alt={title}
-        />
+    <div className={styles.event}>
+      <div className={styles.eventImageFrame}>
+        <Image className={styles.eventImage} src={imageOriginal} alt={title} />
       </div>
-      <div className={classes['event__details']}>
-        <h2 className={classes['event__details-title']}>{title}</h2>
-        <p className={classes['event__details-category']}>{category}</p>
+      <div className={styles.eventDetails}>
+        <h2 className={styles.eventDetailsTitle}>{title}</h2>
+        <p className={styles.eventDetailsCategory}>{category}</p>
         <p>
-          <span className={classes['event__details-label']}>About:</span>
+          <span className={styles.eventDetailsLabel}>About:</span>
           {description}
         </p>
         <p>
-          <span className={classes['event__details-label']}>Location:</span>
+          <span className={styles.eventDetailsLabel}>Location:</span>
           {location} {address}
         </p>
         <p>
-          <span className={classes['event__details-label']}>When:</span>
+          <span className={styles.eventDetailsLabel}>When:</span>
           {eventDate}
         </p>
         <p>
-          <span className={classes['event__details-label']}>Starts at:</span>
+          <span className={styles.eventDetailsLabel}>Starts at:</span>
           {eventTime}
         </p>
       </div>
-      <div className={classes['event__details-actions']}>
-        <div className={classes['event__details-actions--availability']}>
+      <div className={styles.eventDetailsActions}>
+        <div className={styles.eventDetailsActionsAvailability}>
           <p>
             <span
-              className={`${classes['event__details-label']} ${classes['event__details-label--red']}`}
+              className={`${styles.eventDetailsLabel} ${styles.eventDetailsLabelRed}`}
             >
               Tickets left:
             </span>
@@ -73,19 +72,19 @@ const Event: React.FC<EventProps> = ({ event }) => {
           </p>
           <p>
             <span
-              className={`${classes['event__details-label']} ${classes['event__details-label--blue']}`}
+              className={`${styles.eventDetailsLabel} ${styles.eventDetailsLabelBlue}`}
             >
               Wish list:
             </span>
             {ticketsWishList}
           </p>
           <p>
-            <span className={classes['event__details-label']}>Price:</span>
+            <span className={styles.eventDetailsLabel}>Price:</span>
             {displayPrice} {currency}
           </p>
           <hr></hr>
           <p>
-            <span className={classes['event__details-label']}>Total:</span>
+            <span className={styles.eventDetailsLabel}>Total:</span>
             {totalPrice}
           </p>
         </div>
