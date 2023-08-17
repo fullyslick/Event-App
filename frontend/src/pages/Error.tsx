@@ -1,19 +1,20 @@
-import { useRouteError } from 'react-router-dom';
+import { useRouteError, isRouteErrorResponse } from 'react-router-dom';
 import MainNavigation from '../components/Layout/MainNavigation';
 import Notification from '../components/UI/Notification';
 import ContentWrapper from '../components/Layout/ContentWrapper';
 
 const Error = () => {
-  // Detect error type
   const error = useRouteError();
 
   let title = 'An error occurred';
   let message = 'Something went wrong';
 
-  // used for invalid paths
-  if (error.status === 404) {
-    title = 'Not found!';
-    message = 'Could not find resource or page.';
+  if (isRouteErrorResponse(error)) {
+    // used for invalid paths
+    if (error.status === 404) {
+      title = 'Not found!';
+      message = 'Could not find resource or page.';
+    }
   }
 
   return (
