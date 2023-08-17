@@ -1,3 +1,16 @@
+export class NewEvent {
+  constructor(
+    public title: string,
+    public summary: string,
+    public date: Date,
+    public location: string,
+    public address: string,
+    public image: string,
+    public category: string,
+    public capacity: number,
+    public price: number
+  ) {}
+}
 export class EventListing {
   constructor(
     public id: string,

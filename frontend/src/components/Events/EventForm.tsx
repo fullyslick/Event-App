@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 import { selectIsLoading } from '../../store/ui-slice';
 
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import validationSchema from '../../validators/validation-schema';
 
 import Input from '../Form/Input';
@@ -17,8 +17,11 @@ import Loader from '../UI/Loader';
 import categoryNames from '../../utils/category-names';
 
 import { selectEvents } from '../../store/events-slice';
+import { AppDispatch } from '../../store';
 import { transformNewEventData } from '../../utils/transform-event-data';
 import classes from './EventForm.module.css';
+
+import { NewEvent } from '../../types';
 
 const nextDay = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 
@@ -26,11 +29,14 @@ const EventForm = () => {
   const isLoading = useSelector(selectIsLoading);
   const events = useSelector(selectEvents);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const newEventId = useRef('');
 
-  const handleFormSubmit = (values, props) => {
+  const handleFormSubmit = (
+    values: NewEvent,
+    props: FormikHelpers<NewEvent>
+  ) => {
     const event = transformNewEventData(values);
 
     newEventId.current = event.id;
@@ -57,13 +63,13 @@ const EventForm = () => {
       initialValues={{
         title: '',
         summary: '',
-        date: '',
+        date: new Date(new Date().setDate(new Date().getDate() + 1)), // next day same time
         location: '',
         address: '',
         image: '',
         category: '',
-        capacity: '',
-        price: '',
+        capacity: 1,
+        price: 0,
       }}
       validationSchema={validationSchema}
       onSubmit={handleFormSubmit}
@@ -124,7 +130,7 @@ const EventForm = () => {
           type='number'
           step='1'
           min='1'
-          onKeyPress={(event) => {
+          onKeyPress={(event: React.KeyboardEvent<HTMLInputElement>) => {
             // Disallow decimals
             if (!/[0-9]/.test(event.key)) {
               event.preventDefault();

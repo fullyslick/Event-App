@@ -1,6 +1,6 @@
-import { EventListing } from '../types';
+import { EventListing, NewEvent } from '../types';
 
-export const transformNewEventData = (inputValues: any) => {
+export const transformNewEventData = (inputValues: NewEvent) => {
   const {
     title,
     summary,
@@ -31,5 +31,6 @@ export const transformNewEventData = (inputValues: any) => {
     0
   );
 
-  return eventListing;
+  // Fixes redux non-serializable value issue - convert class instance to object literal
+  return JSON.parse(JSON.stringify(eventListing));
 };
