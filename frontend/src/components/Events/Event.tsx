@@ -2,11 +2,11 @@ import styles from './Event.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
-import { event } from '../../types';
+import { EventListing } from '../../types';
 import React from 'react';
 
 interface EventProps {
-  event: event;
+  event: EventListing;
 }
 
 const Event: React.FC<EventProps> = ({ event }) => {

@@ -4,10 +4,10 @@ import { RootState } from '.';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import localStorageHelper from '../utils/local-storage';
 
-import { events, event } from '../types';
+import { EventListings, EventListing } from '../types';
 
 interface eventsState {
-  events: events;
+  events: EventListings;
   totalWishList: number;
   totalPrice: number;
   areEventsReplaced: boolean;
@@ -105,7 +105,7 @@ const eventsSlice = createSlice({
 
       localStorageHelper.updateLocalWishlist(localWishlist);
     },
-    replaceEvents(state, action: PayloadAction<events>) {
+    replaceEvents(state, action: PayloadAction<EventListings>) {
       let onLoadTotalWishList = 0;
       let onLoadTotalPrice = 0;
       const eventsData = [...action.payload];
@@ -154,7 +154,7 @@ const eventsSlice = createSlice({
       // Instead this flag is used
       state.areEventsReplaced = true;
     },
-    appendEvent(state, action: PayloadAction<event>) {
+    appendEvent(state, action: PayloadAction<EventListing>) {
       const event = action.payload;
       // Get data from localStorage wishlist
       const localWishlist = localStorageHelper.getLocalWishlist();
@@ -189,7 +189,7 @@ const eventsSlice = createSlice({
       state.events.push(event);
       state.totalWishList = totalWishlistEvents;
     },
-    createEvent(state, action: PayloadAction<event>) {
+    createEvent(state, action: PayloadAction<EventListing>) {
       state.events.unshift(action.payload);
     },
   },
@@ -198,7 +198,8 @@ const eventsSlice = createSlice({
 export const eventsActions = eventsSlice.actions;
 
 // Selectors
-export const selectEvents = (state: RootState): events => state.events.events;
+export const selectEvents = (state: RootState): EventListings =>
+  state.events.events;
 export const selectTotalWishList = (state: RootState) =>
   state.events.totalWishList;
 export const selectTotalPrice = (state: RootState) => state.events.totalPrice;

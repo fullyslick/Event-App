@@ -1,19 +1,21 @@
-export interface event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  address: string;
-  imageOriginal: string;
-  image: string;
-  category: string;
-  availableTickets: number;
-  capacity: number;
-  price: number;
-  displayPrice: number;
-  currency: string;
-  ticketsWishList: number;
+export class EventListing {
+  constructor(
+    public id: string,
+    public title: string,
+    public description: string,
+    public date: string,
+    public location: string,
+    public address: string,
+    public imageOriginal: string,
+    public image: string,
+    public category: string,
+    public availableTickets: number,
+    public capacity: number,
+    public price: number,
+    public displayPrice: number,
+    public currency: string,
+    public ticketsWishList: number
+  ) {}
 }
 
-export type events = event[];
+export type EventListings = EventListing[];

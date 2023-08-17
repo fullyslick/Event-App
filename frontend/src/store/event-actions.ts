@@ -3,7 +3,7 @@ import { eventsActions } from './events-slice';
 import { getEvents, getEventDetails } from '../utils/event-api';
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 
-import { event } from '../types';
+import { EventListing } from '../types';
 
 export const getEventsData = () => {
   return async (dispatch: Dispatch<AnyAction>) => {
@@ -51,7 +51,7 @@ export const getSingleEvent = (eventId: string) => {
   };
 };
 
-export const addNewEvent = (eventData: event) => {
+export const addNewEvent = (eventData: EventListing) => {
   return (dispatch: Dispatch<AnyAction>) => {
     dispatch(uiActions.setLoader(true));
 

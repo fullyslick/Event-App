@@ -7,11 +7,11 @@ import classes from './EventTile.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
-import { event } from '../../types';
+import { EventListing } from '../../types';
 import React from 'react';
 
 interface EventTileProps {
-  event: event;
+  event: EventListing;
   hasRemove: Boolean;
   hasStepper: Boolean;
 }

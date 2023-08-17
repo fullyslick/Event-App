@@ -1,11 +1,11 @@
 import classes from './EventsList.module.css';
 import EventTile from './EventTile';
 
-import { events } from '../../types';
+import { EventListings } from '../../types';
 import React from 'react';
 
 interface EventListProps {
-  events: events;
+  events: EventListings;
   hasRemove?: boolean;
   hasStepper?: boolean;
 }
