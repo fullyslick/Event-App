@@ -6,7 +6,7 @@ import { selectIsLoading, selectNotification } from '../store/ui-slice';
 import { selectEvents, selectAreEventsReplaced } from '../store/events-slice';
 
 import ContentWrapper from '../components/Layout/ContentWrapper';
-import EventsList from '../components/Events/EventList';
+import EventsList from '../components/Events/EventsList';
 import Notification from '../components/UI/Notification';
 import Loader from '../components/UI/Loader';
 import WishListTotals from '../components/WishList/WishListTotals';

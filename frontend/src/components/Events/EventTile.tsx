@@ -3,13 +3,24 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { eventsActions } from '../../store/events-slice';
 
-import PropTypes from 'prop-types';
-
 import classes from './EventTile.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
-const EventTile = ({ event, hasRemove, hasStepper }) => {
+import { event } from '../../types';
+import React from 'react';
+
+interface EventTileProps {
+  event: event;
+  hasRemove: Boolean;
+  hasStepper: Boolean;
+}
+
+const EventTile: React.FC<EventTileProps> = ({
+  event,
+  hasRemove = false,
+  hasStepper = true,
+}) => {
   const {
     id,
     title,
@@ -24,8 +35,9 @@ const EventTile = ({ event, hasRemove, hasStepper }) => {
   } = event;
 
   const eventDate = date.split('T')[0].split('-').join(' / ');
-  let eventTime = date.split('T')[1].split(':');
+  let eventTime: string | string[] = date.split('T')[1].split(':');
   eventTime.pop();
+
   eventTime = eventTime.join(':');
 
   const dispatch = useDispatch();
@@ -101,26 +113,3 @@ const EventTile = ({ event, hasRemove, hasStepper }) => {
 };
 
 export default EventTile;
-
-EventTile.defaultProps = {
-  events: {},
-  hasRemove: false,
-  hasStepper: true,
-};
-
-EventTile.propTypes = {
-  event: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    ticketsWishList: PropTypes.number.isRequired,
-    availableTickets: PropTypes.number.isRequired,
-    displayPrice: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-  }),
-  hasRemove: PropTypes.bool,
-  hasStepper: PropTypes.bool,
-};

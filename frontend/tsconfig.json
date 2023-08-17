@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5", // the target JS version to which the ts code will be transformed
+    "target": "es6", // the target JS version to which the ts code will be transformed
     "lib": [
       // unlocks libraries installed by TS
       "dom", // understands DOM types like HTMLInputElement used in NewTodo.tsx

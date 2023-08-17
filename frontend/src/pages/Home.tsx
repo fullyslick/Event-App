@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getEventsData } from '../store/event-actions';
 import { selectIsLoading, selectNotification } from '../store/ui-slice';
 import { selectEvents, selectAreEventsReplaced } from '../store/events-slice';
+import { AppDispatch } from '../store';
 
-import EventsList from '../components/Events/EventList';
+import EventsList from '../components/Events/EventsList';
 import Notification from '../components/UI/Notification';
 import ContentWrapper from '../components/Layout/ContentWrapper';
 import Loader from '../components/UI/Loader';
@@ -16,7 +17,6 @@ const Home = () => {
   const hasEvents = useSelector(selectAreEventsReplaced);
   const events = useSelector(selectEvents);
 
-  // Handles Search and Category filtering
   const categories = [...new Set(events.map((event) => event.category))];
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -33,11 +33,10 @@ const Home = () => {
     }
   });
 
-  // Handles on load UI
   const notification = useSelector(selectNotification);
   const isLoading = useSelector(selectIsLoading);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     // Get events data from API only if there is no data in Redux
@@ -47,12 +46,12 @@ const Home = () => {
     }
   }, [dispatch, hasEvents]);
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputQuery = event.target.value.trim().toLowerCase();
     setSearchQuery(inputQuery);
   };
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category: string) => {
     if (category === selectedCategory) {
       setSelectedCategory('');
       return;
