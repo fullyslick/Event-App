@@ -5,11 +5,10 @@ import classes from './Form.module.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  name: string;
 }
 
 const Input: React.FC<InputProps> = ({ label, name, ...props }) => {
-  const [field, meta] = useField(name);
+  const [field, meta] = useField(name!);
 
   return (
     <div className={classes['form__item']}>

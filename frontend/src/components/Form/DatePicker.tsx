@@ -11,14 +11,15 @@ interface DatePickerProps extends ReactDatePickerProps {
 
 export const DatePickerField: React.FC<DatePickerProps> = ({
   label,
+  name,
   ...props
 }) => {
   const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField(props.name || '');
+  const [field, meta] = useField(name!);
 
   return (
     <div className={styles['form__item']}>
-      <label className={styles['form__label']} htmlFor={props.name}>
+      <label className={styles['form__label']} htmlFor={name}>
         {label}
       </label>
       <DatePicker
@@ -27,7 +28,7 @@ export const DatePickerField: React.FC<DatePickerProps> = ({
         selected={(field.value && new Date(field.value)) || null}
         showTimeSelect
         dateFormat='Pp'
-        id={props.name}
+        id={name}
         className={styles['form__input']}
         onChange={(date) => {
           setFieldValue(field.name, date);
