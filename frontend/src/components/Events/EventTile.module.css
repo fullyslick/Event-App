@@ -1,4 +1,4 @@
-.event-tile {
+.eventTile {
   position: relative;
   height: 100%;
   display: flex;
@@ -11,12 +11,12 @@
   box-shadow: var(--box-shadow-light);
 }
 
-.event-tile:hover {
+.eventTile:hover {
   transition: box-shadow 0.3s;
   box-shadow: var(--box-shadow-light-hover);
 }
 
-.event-tile--remove {
+.eventTileRemove {
   position: absolute;
   text-align: center;
   top: 16px;
@@ -34,35 +34,35 @@
   box-shadow: var(--box-shadow);
 }
 
-.event-tile__link {
+.eventTileLink {
   display: block;
   height: 200px;
 }
 
-.event-tile__image {
+.eventTileImage {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
-.event-tile__details {
+.eventTileDetails {
   padding: 16px 16px 4px 16px;
   text-align: left;
   flex-grow: 2;
 }
 
-.event-tile__details-title {
+.eventTileDetailsTitle {
   padding: 8px 0;
   margin: 0;
   font-size: var(--font-l);
 }
 
-.event-tile__details p {
+.eventTileDetails p {
   margin: 4px auto;
   font-size: var(--font-m);
 }
 
-.event-tile__details-category {
+.eventTileDetailsCategory {
   font-size: var(--font-s);
   padding: 0 12px;
   background-color: var(--color-theme-blue-dark);
@@ -72,33 +72,33 @@
   box-shadow: var(--box-shadow-light);
 }
 
-.event-tile__details-label {
+.eventTileDetailsLabel {
   font-weight: bold;
   color: var(--color-theme-dark);
   margin-right: 4px;
 }
 
-.event-tile__details-label--red {
+.eventTileDetailsLabelRed {
   color: var(--color-theme-red);
 }
 
-.event-tile__details-label--blue {
+.eventTileDetailsLabelBlue {
   color: var(--color-theme-blue-dark);
 }
 
-.event-tile__details-actions {
+.eventTileDetailsActions {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.event-tile__details-actions p {
+.eventTileDetailsActions p {
   font-size: var(--font-m);
   margin: 0;
 }
 
-.event-tile__details-actions--availability {
+.eventTileDetailsActionsAvailability {
   text-align: left;
   padding: 8px 16px;
 }

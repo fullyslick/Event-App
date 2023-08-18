@@ -1,4 +1,4 @@
-.event-form {
+.eventForm {
   position: relative;
   padding: 32px 16px;
   max-width: 768px;
@@ -8,7 +8,7 @@
   border-radius: 10px;
 }
 
-.event-form__loader-overlay {
+.eventFormLoaderOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@
   z-index: 10;
 }
 
-.event-form__submit-btn {
+.eventFormSubmitBtn {
   padding: 8px 16px;
   font-size: var(--font-l);
   background-color: var(--color-theme-red);
@@ -33,14 +33,14 @@
   box-shadow: var(--box-shadow);
 }
 
-.event-form__submit-btn:hover {
+.eventFormSubmitBtn:hover {
   color: var(--color-theme-red);
   border: solid 4px var(--color-theme-red);
   background-color: white;
   transition: all 0.3s;
 }
 
-.event-form__submit-btn:disabled,
-.event-form__submit-btn[disabled] {
+.eventFormSubmitBtn:disabled,
+.eventFormSubmitBtn[disabled] {
   opacity: 0.6;
 }

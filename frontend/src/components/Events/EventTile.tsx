@@ -47,51 +47,40 @@ const EventTile: React.FC<EventTileProps> = ({
   };
 
   return (
-    <div className={classes['event-tile']}>
+    <div className={classes.eventTile}>
       {hasRemove && (
-        <button
-          className={classes['event-tile--remove']}
-          onClick={handleRemove}
-        >
+        <button className={classes.eventTileRemove} onClick={handleRemove}>
           ✖
         </button>
       )}
-      <Link to={`/event/${id}`} className={classes['event-tile__link']}>
-        <Image
-          className={classes['event-tile__image']}
-          src={image}
-          alt={title}
-        />
+      <Link to={`/event/${id}`} className={classes.eventTileLink}>
+        <Image className={classes.eventTileImage} src={image} alt={title} />
       </Link>
-      <div className={classes['event-tile__details']}>
-        <h2 className={classes['event-tile__details-title']}>{title}</h2>
-        <p className={classes['event-tile__details-category']}>{category}</p>
+      <div className={classes.eventTileDetails}>
+        <h2 className={classes.eventTileDetailsTitle}>{title}</h2>
+        <p className={classes.eventTileDetailsCategory}>{category}</p>
         <p>
-          <span className={classes['event-tile__details-label']}>
-            Location:
-          </span>
+          <span className={classes.eventTileDetailsLabel}>Location:</span>
           {location}
         </p>
         <p>
-          <span className={classes['event-tile__details-label']}>When:</span>
+          <span className={classes.eventTileDetailsLabel}>When:</span>
           {eventDate}
         </p>
         <p>
-          <span className={classes['event-tile__details-label']}>
-            Starts at:
-          </span>
+          <span className={classes.eventTileDetailsLabel}>Starts at:</span>
           {eventTime}
         </p>
         <p>
-          <span className={classes['event-tile__details-label']}>Price:</span>
+          <span className={classes.eventTileDetailsLabel}>Price:</span>
           {displayPrice} {currency}
         </p>
       </div>
-      <div className={classes['event-tile__details-actions']}>
-        <div className={classes['event-tile__details-actions--availability']}>
+      <div className={classes.eventTileDetailsActions}>
+        <div className={classes.eventTileDetailsActionsAvailability}>
           <p>
             <span
-              className={`${classes['event-tile__details-label']} ${classes['event-tile__details-label--red']}`}
+              className={`${classes.eventTileDetailsLabel} ${classes.eventTileDetailsLabelRed}`}
             >
               Tickets left:
             </span>
@@ -99,7 +88,7 @@ const EventTile: React.FC<EventTileProps> = ({
           </p>
           <p>
             <span
-              className={`${classes['event-tile__details-label']} ${classes['event-tile__details-label--blue']}`}
+              className={`${classes.eventTileDetailsLabel} ${classes.eventTileDetailsLabelBlue}`}
             >
               Wish list:
             </span>

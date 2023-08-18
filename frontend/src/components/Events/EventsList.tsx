@@ -1,4 +1,4 @@
-import classes from './EventsList.module.css';
+import styles from './EventsList.module.css';
 import EventTile from './EventTile';
 
 import { EventListings } from '../../types';
@@ -16,10 +16,10 @@ const EventsList: React.FC<EventListProps> = ({
   hasStepper = true,
 }) => {
   return (
-    <div className={classes.events}>
-      <ul className={classes.list}>
+    <div className={styles.events}>
+      <ul className={styles.list}>
         {events.map((event) => (
-          <li key={event.id} className={classes.item}>
+          <li key={event.id} className={styles.item}>
             <EventTile
               event={event}
               hasRemove={hasRemove}

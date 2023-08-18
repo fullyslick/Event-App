@@ -19,7 +19,7 @@ import categoryNames from '../../utils/category-names';
 import { selectEvents } from '../../store/events-slice';
 import { AppDispatch } from '../../store';
 import { transformNewEventData } from '../../utils/transform-event-data';
-import classes from './EventForm.module.css';
+import styles from './EventForm.module.css';
 
 import { NewEvent } from '../../types';
 
@@ -74,10 +74,10 @@ const EventForm = () => {
       validationSchema={validationSchema}
       onSubmit={handleFormSubmit}
     >
-      <Form className={classes['event-form']}>
+      <Form className={styles.eventForm}>
         {isLoading && (
           <>
-            <div className={classes['event-form__loader-overlay']}></div>
+            <div className={styles.eventFormLoaderOverlay}></div>
             <Loader />
           </>
         )}
@@ -145,7 +145,7 @@ const EventForm = () => {
           placeholder='e.g 1.25'
         />
         <button
-          className={classes['event-form__submit-btn']}
+          className={styles.eventFormSubmitBtn}
           type='submit'
           disabled={isLoading}
         >
