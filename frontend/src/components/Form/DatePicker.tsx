@@ -18,8 +18,8 @@ export const DatePickerField: React.FC<DatePickerProps> = ({
   const [field, meta] = useField(name!);
 
   return (
-    <div className={styles['form__item']}>
-      <label className={styles['form__label']} htmlFor={name}>
+    <div className={styles.formItem}>
+      <label className={styles.formLabel} htmlFor={name}>
         {label}
       </label>
       <DatePicker
@@ -29,14 +29,14 @@ export const DatePickerField: React.FC<DatePickerProps> = ({
         showTimeSelect
         dateFormat='Pp'
         id={name}
-        className={styles['form__input']}
+        className={styles.formInput}
         onChange={(date) => {
           setFieldValue(field.name, date);
         }}
       />
       <div
-        className={`${styles['form__error']} ${
-          meta.touched && meta.error ? styles['form__error--active'] : ''
+        className={`${styles.formError} ${
+          meta.touched && meta.error ? styles.formErrorActive : ''
         }`}
       >
         {meta.error}

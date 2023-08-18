@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
 import { useField } from 'formik';
 
-import classes from './Form.module.css';
+import styles from './Form.module.css';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -11,19 +11,14 @@ const Input: React.FC<InputProps> = ({ label, name, ...props }) => {
   const [field, meta] = useField(name!);
 
   return (
-    <div className={classes['form__item']}>
-      <label className={classes['form__label']} htmlFor={name}>
+    <div className={styles.formItem}>
+      <label className={styles.formLabel} htmlFor={name}>
         {label}
       </label>
-      <input
-        className={classes['form__input']}
-        id={name}
-        {...field}
-        {...props}
-      />
+      <input className={styles.formInput} id={name} {...field} {...props} />
       <div
-        className={`${classes['form__error']} ${
-          meta.touched && meta.error ? classes['form__error--active'] : ''
+        className={`${styles.formError} ${
+          meta.touched && meta.error ? styles.formErrorActive : ''
         }`}
       >
         {meta.error}

@@ -10,19 +10,14 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 const Select: React.FC<SelectProps> = ({ label, name, ...props }) => {
   const [field, meta] = useField(name!);
   return (
-    <div className={styles['form__item']}>
-      <label className={styles['form__label']} htmlFor={name}>
+    <div className={styles.formItem}>
+      <label className={styles.formLabel} htmlFor={name}>
         {label}
       </label>
-      <select
-        className={styles['form__select']}
-        id={name}
-        {...field}
-        {...props}
-      />
+      <select className={styles.formSelect} id={name} {...field} {...props} />
       <div
-        className={`${styles['form__error']} ${
-          meta.touched && meta.error ? styles['form__error--active'] : ''
+        className={`${styles.formError} ${
+          meta.touched && meta.error ? styles.formErrorActive : ''
         }`}
       >
         {meta.error}
