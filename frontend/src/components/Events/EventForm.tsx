@@ -97,7 +97,6 @@ const EventForm = () => {
         <TextArea
           label='Summary'
           name='summary'
-          type='text'
           maxLength={140}
           placeholder='Summary'
         />
