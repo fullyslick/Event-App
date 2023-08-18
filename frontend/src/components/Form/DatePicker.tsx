@@ -1,22 +1,20 @@
 import React from 'react';
 import { useField, useFormikContext } from 'formik';
-import DatePicker from 'react-datepicker';
+import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './Form.module.css';
 
-interface DatePickerProps {
+interface DatePickerProps extends ReactDatePickerProps {
   label: string;
-  name: string;
-  minDate: Date;
 }
 
 export const DatePickerField: React.FC<DatePickerProps> = ({
-  label = '',
+  label,
   ...props
 }) => {
   const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField(props);
+  const [field, meta] = useField(props.name || '');
 
   return (
     <div className={styles['form__item']}>
@@ -31,8 +29,8 @@ export const DatePickerField: React.FC<DatePickerProps> = ({
         dateFormat='Pp'
         id={props.name}
         className={styles['form__input']}
-        onChange={(_, event: React.ChangeEvent<HTMLInputElement>) => {
-          setFieldValue(field.name, event.target.value);
+        onChange={(date) => {
+          setFieldValue(field.name, date);
         }}
       />
       <div

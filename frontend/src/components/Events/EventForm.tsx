@@ -101,7 +101,12 @@ const EventForm = () => {
           maxLength={140}
           placeholder='Summary'
         />
-        <DatePickerField label='When' name='date' minDate={nextDay} />
+        <DatePickerField
+          label='When'
+          name='date'
+          minDate={nextDay}
+          onChange={() => {}}
+        />
         <Input
           label='Location'
           name='location'
