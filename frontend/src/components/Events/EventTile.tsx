@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { eventsActions } from '../../store/events-slice';
 
-import classes from './EventTile.module.css';
+import styles from './EventTile.module.css';
 import Stepper from '../UI/Stepper';
 import Image from '../UI/Image';
 
@@ -47,40 +47,40 @@ const EventTile: React.FC<EventTileProps> = ({
   };
 
   return (
-    <div className={classes.eventTile}>
+    <div className={styles.eventTile}>
       {hasRemove && (
-        <button className={classes.eventTileRemove} onClick={handleRemove}>
+        <button className={styles.eventTileRemove} onClick={handleRemove}>
           ✖
         </button>
       )}
-      <Link to={`/event/${id}`} className={classes.eventTileLink}>
-        <Image className={classes.eventTileImage} src={image} alt={title} />
+      <Link to={`/event/${id}`} className={styles.eventTileLink}>
+        <Image className={styles.eventTileImage} src={image} alt={title} />
       </Link>
-      <div className={classes.eventTileDetails}>
-        <h2 className={classes.eventTileDetailsTitle}>{title}</h2>
-        <p className={classes.eventTileDetailsCategory}>{category}</p>
+      <div className={styles.eventTileDetails}>
+        <h2 className={styles.eventTileDetailsTitle}>{title}</h2>
+        <p className={styles.eventTileDetailsCategory}>{category}</p>
         <p>
-          <span className={classes.eventTileDetailsLabel}>Location:</span>
+          <span className={styles.eventTileDetailsLabel}>Location:</span>
           {location}
         </p>
         <p>
-          <span className={classes.eventTileDetailsLabel}>When:</span>
+          <span className={styles.eventTileDetailsLabel}>When:</span>
           {eventDate}
         </p>
         <p>
-          <span className={classes.eventTileDetailsLabel}>Starts at:</span>
+          <span className={styles.eventTileDetailsLabel}>Starts at:</span>
           {eventTime}
         </p>
         <p>
-          <span className={classes.eventTileDetailsLabel}>Price:</span>
+          <span className={styles.eventTileDetailsLabel}>Price:</span>
           {displayPrice} {currency}
         </p>
       </div>
-      <div className={classes.eventTileDetailsActions}>
-        <div className={classes.eventTileDetailsActionsAvailability}>
+      <div className={styles.eventTileDetailsActions}>
+        <div className={styles.eventTileDetailsActionsAvailability}>
           <p>
             <span
-              className={`${classes.eventTileDetailsLabel} ${classes.eventTileDetailsLabelRed}`}
+              className={`${styles.eventTileDetailsLabel} ${styles.eventTileDetailsLabelRed}`}
             >
               Tickets left:
             </span>
@@ -88,7 +88,7 @@ const EventTile: React.FC<EventTileProps> = ({
           </p>
           <p>
             <span
-              className={`${classes.eventTileDetailsLabel} ${classes.eventTileDetailsLabelBlue}`}
+              className={`${styles.eventTileDetailsLabel} ${styles.eventTileDetailsLabelBlue}`}
             >
               Wish list:
             </span>
